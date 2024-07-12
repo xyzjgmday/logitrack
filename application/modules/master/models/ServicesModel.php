@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  *
- * Model UserModel
+ * Model ServicesModel
  *
  * This Model for ...
  * 
@@ -14,7 +14,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *
  */
 
-class UserModel extends CI_Model
+class ServicesModel extends CI_Model
 {
 
   // ------------------------------------------------------------------------
@@ -26,14 +26,14 @@ class UserModel extends CI_Model
 
   public function tableName()
   {
-    return $name = ' users';
+    return $name = ' services';
   }
 
   // ------------------------------------------------------------------------
 
 
   // ------------------------------------------------------------------------
-  function getUsers()
+  function getData()
   {
     $results = array();
     $query = $this->db->query("SELECT * FROM" . $this->tableName());
@@ -74,7 +74,7 @@ class UserModel extends CI_Model
     }
   }
 
-  function filter_user($id)
+  function filter_data($id)
   {
     return $this->db->get_where($this->tableName(), array('id' => $id))->row();
   }
@@ -83,5 +83,5 @@ class UserModel extends CI_Model
 
 }
 
-/* End of file UserModel.php */
-/* Location: ./application/models/UserModel.php */
+/* End of file ServicesModel.php */
+/* Location: ./application/models/ServicesModel.php */

@@ -127,7 +127,7 @@
                                 <select name="pembiayaan" class="form-control m-input" required>
                                     <option value="">Select</option>
                                     <option value="1">Pribadi</option>
-                                    <option value="2">BPJS</option>
+                                    <option value="2">BPJS Kesehatan</option>
                                 </select>
                             </div>
                             <div class="col-lg-6">

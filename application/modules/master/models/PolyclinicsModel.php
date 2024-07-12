@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  *
- * Model UserModel
+ * Model PolyclinicsModel
  *
  * This Model for ...
  * 
@@ -14,7 +14,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *
  */
 
-class UserModel extends CI_Model
+class PolyclinicsModel extends CI_Model
 {
 
   // ------------------------------------------------------------------------
@@ -26,14 +26,14 @@ class UserModel extends CI_Model
 
   public function tableName()
   {
-    return $name = ' users';
+    return $name = ' clinics';
   }
 
   // ------------------------------------------------------------------------
 
 
   // ------------------------------------------------------------------------
-  function getUsers()
+  function getData()
   {
     $results = array();
     $query = $this->db->query("SELECT * FROM" . $this->tableName());
@@ -47,16 +47,15 @@ class UserModel extends CI_Model
   {
     $this->load->library('form_validation');
 
-    $username = $this->input->post('username', TRUE);
-    $email = $this->input->post('email', TRUE);
-    $password = $this->input->post('password', TRUE);
-    $level_id = $this->input->post('idLevels', TRUE);
+    $nama_poli = $this->input->post('nama_poli', TRUE);
+    $kategori = $this->input->post('kategori_poli', TRUE);
+    $spesialisasi = $this->input->post('spesialisasi', TRUE);
 
     $data = array(
-      'username' => $username,
-      'email' => $email,
-      'password' => md5($password . $this->config->item('key_login')),
-      'level_id' => $level_id,
+      'nama_poli' => ucwords($nama_poli),
+      'kategori' => $kategori,
+      'spesialisasi' => ucwords($spesialisasi),
+      'status' => 1,
       'created_at' => date('Y-m-d H:i:s')
     );
 
@@ -74,7 +73,7 @@ class UserModel extends CI_Model
     }
   }
 
-  function filter_user($id)
+  function filter_data($id)
   {
     return $this->db->get_where($this->tableName(), array('id' => $id))->row();
   }
@@ -83,5 +82,5 @@ class UserModel extends CI_Model
 
 }
 
-/* End of file UserModel.php */
-/* Location: ./application/models/UserModel.php */
+/* End of file PolyclinicsModel.php */
+/* Location: ./application/models/PolyclinicsModel.php */
