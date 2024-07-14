@@ -17,7 +17,7 @@
                             <a href="<?= $url ?>" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air">
                                 <span>
                                     <i class="la la-plus"></i>
-                                    <span>Tambah Data</span>
+                                    <span>Tambah Layanan</span>
                                 </span>
                             </a>
                         </li>
@@ -28,22 +28,24 @@
         <div class="m-portlet__body">
 
             <!--begin: Datatable -->
-            <table class="table table-striped- table-bordered table-hover table-checkable" id="table-users">
+            <table class="table table-striped- table-bordered table-hover table-checkable" id="table-service">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Username</th>
-                        <th>Last Login</th>
-                        <th>Role</th>
+                        <th>Nama Layanan</th>
+                        <th>Tipe Layanan</th>
+                        <th>Harga</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Username</th>
-                        <th>Last Login</th>
-                        <th>Role</th>
+                        <th>Nama Layanan</th>
+                        <th>Tipe Layanan</th>
+                        <th>Harga</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>

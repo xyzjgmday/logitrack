@@ -29,7 +29,8 @@ class Polyclinic extends CI_Controller
   {
     $data = [
       'title' => "Data Polyclinic",
-      'url' => base_url() . 'master/polyclinic/insert'
+      'url' => base_url() . 'master/polyclinic/insert',
+      'var' => '<script src="' . base_url() . 'assets/app/js/module/master/table-poli.js?v=' . time() . '"></script>'
     ];
 
     $this->layout->utama('polyclinic/poli', $data, 'master', 'poli');

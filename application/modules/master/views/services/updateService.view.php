@@ -6,14 +6,14 @@
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
                     <h3 class="m-portlet__head-text">
-                        Informasi Layanan
+                        Update Data User
                     </h3>
                 </div>
             </div>
         </div>
 
         <!--begin::Form-->
-        <form class="m-form m-form--fit m-form--label-align-right" id="insert" action="<?= $url; ?>" method="post">
+        <form class="m-form m-form--fit m-form--label-align-right" id="update" action="<?= $url; ?>" method="post">
             <div class="m-portlet__body">
                 <div class="m-form__content">
                     <div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="m_form_1_msg">
@@ -33,8 +33,9 @@
                     <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Nama Layanan <span
                             class="m--font-danger">*</span></label>
                     <div class="col-lg-6 col-md-9 col-sm-12">
-                        <input type="text" class="form-control m-input" name="nama_lay" placeholder="Enter your type"
-                            data-toggle="m-tooltip" title="Nama Layanan" required>
+                        <input type="text" class="form-control m-input" name="nama_lay"
+                            value="<?= $hasil->name; ?>" placeholder="Enter your type" data-toggle="m-tooltip"
+                            title="Nama Layanan" required>
                     </div>
                 </div>
                 <div class="form-group m-form__group row">
@@ -43,11 +44,11 @@
                     <div class="col-lg-6 col-md-9 col-sm-12">
                         <div class="m-radio-inline">
                             <label class="m-radio m-radio--solid">
-                                <input type="radio" name="type_layanan" checked value="1"> Rawat Jalan
+                                <input type="radio" name="type_layanan" <?= ($hasil->type_layanan == '1') ? 'checked' : ''; ?> value="1"> Rawat Jalan
                                 <span></span>
                             </label>
                             <label class="m-radio m-radio--solid">
-                                <input type="radio" name="type_layanan" value="0"> Rawat Inap
+                                <input type="radio" name="type_layanan" <?= ($hasil->type_layanan == '0') ? 'checked' : ''; ?> value="0"> Rawat Inap
                                 <span></span>
                             </label>
                         </div>
@@ -61,11 +62,9 @@
                     <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Harga <span
                             class="m--font-danger">*</span></label>
                     <div class="col-lg-6 col-md-9 col-sm-12">
-                        <div class="input-group m-input-group">
-                            <div class="input-group-prepend"><span class="input-group-text">Rp. </span></div>
-                            <input type="text" class="form-control m-input" name="harga" id="harga"
-                                placeholder="Enter your type" data-toggle="m-tooltip" title="Tarif Layanan" required>
-                        </div>
+                        <input type="text" class="form-control m-input" name="harga" id="harga"
+                            value="<?= $hasil->harga; ?>" placeholder="Enter your type" data-toggle="m-tooltip"
+                            title="Tarif Layanan" required>
                     </div>
                 </div>
                 <div class="m-separator m-separator--dashed m-separator--lg mt-2 mb-3"></div>
@@ -77,9 +76,11 @@
                     <div class="col-lg-6 col-md-9 col-sm-12">
                         <select class="form-control m-select2" id="m_select2_1" name="poli">
                             <option></option>
-                            <?php foreach ($poli as $value) {
-                                echo '<option value="' . $value->id . '">' . $value->nama_poli . '</option>';
-                            } ?>
+                            <?php foreach ($poli as $value) { ?>
+                                <option value="<?= $value->id; ?>" <?= ($hasil->clinic_id == $value->id) ? 'selected' : ''; ?>>
+                                    <?= $value->nama_poli; ?>
+                                </option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
@@ -88,14 +89,13 @@
                 <div class="m-form__actions m-form__actions">
                     <div class="row">
                         <div class="col-lg-9 ml-lg-auto">
-                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="submit" class="btn btn-success">Update</button>
                             <button type="reset" class="btn btn-secondary" onclick="history.back()">Cancel</button>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
-
         <!--end::Form-->
     </div>
 </div>

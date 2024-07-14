@@ -1,5 +1,6 @@
 var FormControls = {
     init: function () {
+        $('#harga').mask('000.000.000.000.000', { reverse: true });
         $("#insert").validate({
             rules: {
                 // Tambahkan aturan validasi jika diperlukan
@@ -10,6 +11,7 @@ var FormControls = {
             },
             submitHandler: function (form) {
                 var url = form.getAttribute('action');
+                $('#harga').val($('#harga').cleanVal());
                 $.ajax({
                     url: url,
                     type: 'POST',
@@ -63,6 +65,7 @@ var FormControls = {
             },
             submitHandler: function (form) {
                 var url = form.getAttribute('action');
+                $('#harga').val($('#harga').cleanVal());
                 $.ajax({
                     url: url,
                     type: 'POST',
@@ -105,61 +108,11 @@ var FormControls = {
                 });
             }
         });
-        this.initWidgets();
+        $('#m_select2_1, #m_select2_1_validate').select2({
+            placeholder: "Select a state"
+        });
     },
 
-    initWidgets: function () {
-        // datepicker
-        $('#m_datepicker').datepicker({
-            todayHighlight: true,
-            templates: {
-                leftArrow: '<i class="la la-angle-left"></i>',
-                rightArrow: '<i class="la la-angle-right"></i>'
-            }
-        });
-        $('#m2_datepicker').datepicker({
-            todayHighlight: true,
-            templates: {
-                leftArrow: '<i class="la la-angle-left"></i>',
-                rightArrow: '<i class="la la-angle-right"></i>'
-            }
-        });
-        $('#m3_datepicker').datepicker({
-            todayHighlight: true,
-            templates: {
-                leftArrow: '<i class="la la-angle-left"></i>',
-                rightArrow: '<i class="la la-angle-right"></i>'
-            }
-        });
-        $('#m4_datepicker').datepicker({
-            todayHighlight: true,
-            templates: {
-                leftArrow: '<i class="la la-angle-left"></i>',
-                rightArrow: '<i class="la la-angle-right"></i>'
-            }
-        });
-        $('#m5_datepicker').datepicker({
-            todayHighlight: true,
-            templates: {
-                leftArrow: '<i class="la la-angle-left"></i>',
-                rightArrow: '<i class="la la-angle-right"></i>'
-            }
-        });
-        $('#m6_datepicker').datepicker({
-            todayHighlight: true,
-            templates: {
-                leftArrow: '<i class="la la-angle-left"></i>',
-                rightArrow: '<i class="la la-angle-right"></i>'
-            }
-        });
-        $('#m_timepicker_2').timepicker({
-            minuteStep: 1,
-            defaultTime: '',
-            showSeconds: true,
-            showMeridian: false,
-            snapToStep: true
-        });
-    }
 };
 
 jQuery(document).ready(function () {

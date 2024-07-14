@@ -47,16 +47,17 @@ class ServicesModel extends CI_Model
   {
     $this->load->library('form_validation');
 
-    $username = $this->input->post('username', TRUE);
-    $email = $this->input->post('email', TRUE);
-    $password = $this->input->post('password', TRUE);
-    $level_id = $this->input->post('idLevels', TRUE);
+    $nama_lay = $this->input->post('nama_lay', TRUE);
+    $type_layanan = $this->input->post('type_layanan', TRUE);
+    $harga = $this->input->post('harga', TRUE);
+    $poli_id = $this->input->post('poli', TRUE);
 
     $data = array(
-      'username' => $username,
-      'email' => $email,
-      'password' => md5($password . $this->config->item('key_login')),
-      'level_id' => $level_id,
+      'name' => ucwords($nama_lay),
+      'type_layanan' => $type_layanan,
+      'harga' => $harga,
+      'clinic_id' => $poli_id,
+      'status' => 1,
       'created_at' => date('Y-m-d H:i:s')
     );
 

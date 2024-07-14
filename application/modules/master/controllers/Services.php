@@ -29,10 +29,11 @@ class Services extends CI_Controller
   {
     $data = [
       'title' => "Data Services",
-      'url' => base_url() . 'data-users/insert',
+      'url' => base_url() . 'master/services/insert',
+      'var' => '<script src="' . base_url() . 'assets/app/js/module/master/table-service.js?v=' . time() . '"></script>'
     ];
 
-    $this->layout->utama('user/user', $data, 'master', 'services');
+    $this->layout->utama('services/services', $data, 'master', 'poli');
   }
 
   function viewlist()
@@ -46,26 +47,33 @@ class Services extends CI_Controller
 
   function insert()
   {
+    $get_poli = $this->db->select('*')->from('clinics')->get();
+
     $data = array(
       'title' => 'Buat Layanan',
-      'url' => base_url() . 'data-users/insert_data',
-      'var' => '<script src="' . base_url() . 'assets/app/js/module/users/input-user.js?v=' . time() . '"></script>'
+      'url' => base_url() . 'master/services/insert_data',
+      'poli' => $get_poli->result(),
+      'var' => '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+      <script src="' . base_url() . 'assets/app/js/module/master/input-service.js?v=' . time() . '"></script>'
     );
 
-    $this->layout->utama('services/InputService', $data, 'master', 'user');
+    $this->layout->utama('services/InputService', $data, 'master', 'poli');
   }
 
   function change($id)
   {
     $this->session->set_flashdata('ses_decode', $id);
+    $get_poli = $this->db->select('*')->from('clinics')->get();
 
     $data = array(
       'title' => 'Ubah Data',
-      'url' => base_url() . 'data-users/update_data',
-      'var' => '<script src="' . base_url() . 'assets/app/js/module/users/input-user.js?v=' . time() . '"></script>',
+      'url' => base_url() . 'master/services/update_data',
+      'poli' => $get_poli->result(),
+      'var' => '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+      <script src="' . base_url() . 'assets/app/js/module/master/input-service.js?v=' . time() . '"></script>',
       'hasil' => $this->ServicesModel->filter_data($id)
     );
-    $this->layout->utama('user/UpdateUser', $data, 'master', 'user');
+    $this->layout->utama('services/UpdateService', $data, 'master', 'poli');
   }
 
   function insert_data()
@@ -103,7 +111,7 @@ class Services extends CI_Controller
   {
     if ($id) {
       $this->db->where('Order', $id);
-      $deleted = $this->db->delete($this->ProduksiModel->tableName());
+      $deleted = $this->db->delete($this->ServicesModel->tableName());
 
       if ($deleted) {
         $response = array('success' => true);
