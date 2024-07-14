@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <title>SIRUKIT - RS Kabupaten Sorong</title>
-    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="description" content="Sistem Informasi Rumah Sakit Upaya Sehat">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 
     <!--begin::Web font -->
