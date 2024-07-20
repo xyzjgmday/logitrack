@@ -142,7 +142,8 @@
                                 <?php if ($this->uri->segment(2)) { ?>
                                     <li class="m-nav__separator">-</li>
                                     <li class="m-nav__item">
-                                        <a href="" class="m-nav__link">
+                                        <a href="<?= base_url($this->uri->segment(1) . '/' . $this->uri->segment(2)) ?>"
+                                            class="m-nav__link">
                                             <span class="m-nav__link-text"><?= ucwords($this->uri->segment(2)) ?></span>
                                         </a>
                                     </li>

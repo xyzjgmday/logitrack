@@ -29,7 +29,7 @@
             <h4 class="m-menu__section-text">Master</h4>
             <i class="m-menu__section-icon flaticon-more-v2"></i>
         </li>
-        <li class="m-menu__item  m-menu__item--submenu <?= is_active_submenu(['user', 'polyclinic', 'services'], 2) ?>"
+        <li class="m-menu__item  m-menu__item--submenu <?= is_active_submenu(['user', 'polyclinic', 'services', 'practitioner'], 2) ?>"
             aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;"
                 class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-interface-1"></i><span
                     class="m-menu__link-text">Master Data</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
@@ -47,6 +47,10 @@
                             href="<?= base_url('master/services') ?>" class="m-menu__link "><i
                                 class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                 class="m-menu__link-text">Layanan</span></a></li>
+                    <li class="m-menu__item <?= is_active('practitioner', 2) ?>" aria-haspopup="true"><a
+                            href="<?= base_url('master/practitioner') ?>" class="m-menu__link "><i
+                                class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                class="m-menu__link-text">Tenaga Medis</span></a></li>
                 </ul>
             </div>
         </li>

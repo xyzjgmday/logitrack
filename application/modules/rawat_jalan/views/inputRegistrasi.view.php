@@ -183,11 +183,11 @@
                             <div class="m-form__actions m-form__actions">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <button type="reset" class="btn btn-secondary"
+                                        <button type="reset" class="btn btn-secondary btn-block"
                                             onclick="history.back()">Batal</button>
                                     </div>
                                     <div class="col-lg-2 ml-lg-4">
-                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                        <button type="submit" class="btn btn-success btn-block">Simpan</button>
                                     </div>
                                 </div>
                             </div>
