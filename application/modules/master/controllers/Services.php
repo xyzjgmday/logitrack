@@ -110,8 +110,8 @@ class Services extends CI_Controller
   public function delete($id)
   {
     if ($id) {
-      $this->db->where('Order', $id);
-      $deleted = $this->db->delete($this->ServicesModel->tableName());
+      $this->db->where('id', $id);
+      $deleted = $this->db->update($this->ServicesModel->tableName(), array('status' => 0));
 
       if ($deleted) {
         $response = array('success' => true);

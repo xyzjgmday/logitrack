@@ -117,7 +117,7 @@ class Pasien extends CI_Controller
   {
     if ($id) {
       $this->db->where('id', $id);
-      $deleted = $this->db->delete($this->PasienModel->tableName());
+      $deleted = $this->db->update($this->PasienModel->tableName(), array('status' => 0));
 
       if ($deleted) {
         $response = array('success' => true);
@@ -127,10 +127,6 @@ class Pasien extends CI_Controller
     } else {
       $response = array('success' => false);
     }
-
-    $this->output
-      ->set_content_type('application/json')
-      ->set_output(json_encode($response));
   }
 
   public function check_nik()

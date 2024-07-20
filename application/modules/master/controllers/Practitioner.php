@@ -116,8 +116,8 @@ class Practitioner extends CI_Controller
   public function delete($id)
   {
     if ($id) {
-      $this->db->where('Order', $id);
-      $deleted = $this->db->delete($this->PractitionerModel->tableName());
+      $this->db->where('id', $id);
+      $deleted = $this->db->update($this->PractitionerModel->tableName(), array('status' => 0));
 
       if ($deleted) {
         $response = array('success' => true);
@@ -127,10 +127,6 @@ class Practitioner extends CI_Controller
     } else {
       $response = array('success' => false);
     }
-
-    $this->output
-      ->set_content_type('application/json')
-      ->set_output(json_encode($response));
   }
 }
 

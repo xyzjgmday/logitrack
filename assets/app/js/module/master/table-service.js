@@ -100,11 +100,11 @@ function formatRupiah(angka, prefix) {
 function confirmDelete(deleteUrl) {
 	swal({
 		title: "Konfirmasi",
-		text: "Apakah Anda yakin ingin menghapus?",
+		text: "Apakah Anda yakin ingin menonaktifkan?",
 		type: "warning",
 		showCancelButton: true,
 		confirmButtonClass: "btn btn-danger m-btn m-btn--custom",
-		confirmButtonText: "Ya, Hapus!",
+		confirmButtonText: "Ya!",
 	})
 		.then((result) => {
 			if (result.value) {
@@ -114,14 +114,14 @@ function confirmDelete(deleteUrl) {
 					dataType: 'json',
 					success: function (response) {
 						if (response.success) {
-							swal("Berhasil", "Data telah dihapus.", "success");
-							$('#table-poli').DataTable().ajax.reload();
+							swal("Berhasil", "Layanan tidak aktif.", "success");
+							$('#table-service').DataTable().ajax.reload();
 						} else {
-							swal("Gagal", "Terjadi kesalahan saat menghapus data.", "error");
+							swal("Gagal", "Terjadi kesalahan saat memproses data.", "error");
 						}
 					},
 					error: function () {
-						swal("Gagal", "Terjadi kesalahan saat menghapus data.", "error");
+						swal("Gagal", "Terjadi kesalahan saat memproses data.", "error");
 					}
 				});
 			}
