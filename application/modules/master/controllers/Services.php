@@ -12,7 +12,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  * @category  Controller CI
  * @param     ...
  * @return    ...
- *
+ * TODO: Add kolom tindakan
  */
 
 class Services extends CI_Controller

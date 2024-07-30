@@ -63,7 +63,10 @@ $route['patients/(:any)/(:any)'] = "pasien/$1/$2";
 $route['patients/([^/]+)'] = "pasien/$1";
 $route['patients'] = "pasien";
 
-//appointment
-$route['appointment/(:any)/(:any)'] = "rawat_jalan/$1/$2";
-$route['appointment/([^/]+)'] = "rawat_jalan/$1";
-$route['appointment'] = "rawat_jalan";
+//poliumum
+$route['appointment/general/([^/]+)'] = "rawat_jalan/index_general/$1";
+$route['appointment/general'] = "rawat_jalan/index_general";
+
+//poligigi
+$route['appointment/dentistry/([^/]+)'] = "rawat_jalan/index_dentistry/$1";
+$route['appointment/dentistry'] = "rawat_jalan/index_dentistry";

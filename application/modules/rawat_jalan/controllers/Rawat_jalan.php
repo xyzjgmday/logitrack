@@ -22,24 +22,78 @@ class Rawat_jalan extends CI_Controller
   {
     parent::__construct();
     $this->auth->cek_auth();
-    $this->load->model('PasienModel');
+    $this->load->model('PendaftaranRajalModel');
+    $this->load->model('master/PolyclinicsModel');
+    $this->load->model('master/PractitionerModel');
   }
 
-  public function index()
+  function index_general($params = null)
   {
+    switch ($params) {
+      case 'waiting':
+        $tab_active = "#m_tabs_3_2";
+        break;
+
+      case 'done':
+        $tab_active = "#m_tabs_3_3";
+        break;
+
+      case 'cancel':
+        $tab_active = "#m_tabs_3_4";
+        break;
+
+      default:
+        $tab_active = "#m_tabs_3_1";
+        break;
+    }
+
     $data = [
-      'title' => "Rawat Jalan",
+      'title' => "Rawat Jalan - Poli Umum",
       'url' => base_url() . 'appointment/registration',
-      'var' => '<script src="' . base_url() . 'assets/app/js/module/pasien/table-pasien.js?v=' . time() . '"></script>'
+      'url_tabs' => base_url() . 'appointment/general',
+      'tabs' => $tab_active,
+      'var' => '<script src="' . base_url() . 'assets/app/js/module/rawat-jalan/table-rajal.js?v=' . time() . '"></script>'
     ];
 
     $this->layout->utama('rawat_jalan', $data, 'rawat_jalan');
   }
 
-  function viewlist()
+  public function index_dentistry($params = null)
   {
+    switch ($params) {
+      case 'waiting':
+        $tab_active = "#m_tabs_3_2";
+        break;
+
+      case 'done':
+        $tab_active = "#m_tabs_3_3";
+        break;
+
+      case 'cancel':
+        $tab_active = "#m_tabs_3_4";
+        break;
+
+      default:
+        $tab_active = "#m_tabs_3_1";
+        break;
+    }
+
+    $data = [
+      'title' => "Rawat Jalan - Poli Gigi",
+      'url' => base_url() . 'appointment/registration',
+      'url_tabs' => base_url() . 'appointment/dentistry',
+      'tabs' => $tab_active,
+      'var' => '<script src="' . base_url() . 'assets/app/js/module/rawat-jalan/table-rajal.js?v=' . time() . '"></script>'
+    ];
+
+    $this->layout->utama('rawat_jalan', $data, 'rawat_jalan');
+  }
+
+  function viewlist($params, $status = null)
+  {
+    $id = ($params === "general") ? 1 : 2;
     header("Content-Type: application/json");
-    $result = $this->PasienModel->getData();
+    $result = $this->PendaftaranRajalModel->getData($id, $status);
     $json_data = json_encode(['data' => $result]);
 
     echo $json_data;
@@ -47,10 +101,18 @@ class Rawat_jalan extends CI_Controller
 
   function registration()
   {
+    $get_id = $this->PendaftaranRajalModel->get_last_id();
+    $get_poli = $this->PolyclinicsModel->getData(1);
+    $get_nakes = $this->PractitionerModel->getData();
+    $get_no_antrian = $this->PendaftaranRajalModel->generate_no_antrian(date('Y-m-d'), $get_id);
+
     $data = array(
       'title' => 'Registrasi Rawat Jalan',
-      'url' => base_url() . 'appointment/registration',
-      'var' => '<script src="' . base_url() . 'assets/app/js/module/pasien/form-pasien.js?v=' . time() . '"></script>'
+      'url' => base_url() . 'rawat_jalan/insert_data',
+      'poli' => $get_poli,
+      'nakes' => $get_nakes,
+      'antrian' => $get_no_antrian,
+      'var' => '<script src="' . base_url() . 'assets/app/js/module/rawat-jalan/form-rajal.js?v=' . time() . '"></script>'
     );
 
     $this->layout->utama('InputRegistrasi', $data, 'rawat_jalan');
@@ -78,7 +140,7 @@ class Rawat_jalan extends CI_Controller
 
   function insert_data()
   {
-    $data = $this->PasienModel->save_data();
+    $data = $this->PendaftaranRajalModel->save_data();
 
     if ($data) {
       $response = array('success' => true, 'message' => 'Data berhasil disimpan');

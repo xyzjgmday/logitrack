@@ -138,6 +138,27 @@ class PasienModel extends CI_Model
       ->get()->row();
   }
 
+  public function get_patients_by_name($term)
+  {
+    $this->db->like('a.nama', $term);
+    $this->db->select('
+        a.id, 
+        a.nama, 
+        a.tanggal_lahir as tgl_lahir, 
+        a.mrn, 
+        a.nik, 
+        a.jenis_kelamin, 
+        CONCAT(a.alamat, ", ", b.nama, ", ", c.nama, ", ", d.nama, ", ", e.nama) as alamat_lengkap
+    ');
+    $this->db->from($this->tableName() . ' as a');
+    $this->db->join('wilayah_desa as b', 'a.desa_id = b.id', 'inner');
+    $this->db->join('wilayah_kecamatan as c', 'a.kecamatan_id = c.id', 'inner');
+    $this->db->join('wilayah_kabupaten as d', 'a.kota_id = d.id', 'inner');
+    $this->db->join('wilayah_provinsi as e', 'a.provinsi_id = e.id', 'inner');
+    $query = $this->db->get();
+    return $query->result_array();
+  }
+
   // ------------------------------------------------------------------------
 
 }

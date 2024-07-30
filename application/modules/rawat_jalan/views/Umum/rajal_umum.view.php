@@ -31,28 +31,28 @@
                 <ul class="nav nav-tabs  m-tabs-line m-tabs-line--primary" role="tablist">
                     <li class="nav-item m-tabs__item">
                         <a class="nav-link m-tabs__link <?= ($tabs == "#m_tabs_3_1") ? "active" : '' ?>"
-                            href="<?= $url_tabs ?>">Semua
+                            href="<?= base_url('appointment/general') ?>">Semua
                             Registrasi</a>
                     </li>
                     <li class="nav-item m-tabs__item">
                         <a class="nav-link m-tabs__link <?= ($tabs == "#m_tabs_3_2") ? "active" : '' ?>"
-                            href="<?= $url_tabs ?>/waiting">Menunggu
+                            href="<?= base_url('appointment/general/waiting') ?>">Menunggu
                             Konsultasi</a>
                     </li>
                     <li class="nav-item m-tabs__item">
                         <a class="nav-link m-tabs__link <?= ($tabs == "#m_tabs_3_3") ? "active" : '' ?>"
-                            href="<?= $url_tabs ?>/done">Selesai
+                            href="<?= base_url('appointment/general/done') ?>">Selesai
                             Konsultasi</a>
                     </li>
                     <li class="nav-item m-tabs__item">
                         <a class="nav-link m-tabs__link <?= ($tabs == "#m_tabs_3_4") ? "active" : '' ?>"
-                            href="<?= $url_tabs ?>/cancel">Dibatalkan</a>
+                            href="<?= base_url('appointment/general/cancel') ?>">Dibatalkan</a>
                     </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="m_tabs_3_1" role="tabpanel">
                         <table class="table table-striped- table-bordered table-hover table-checkable"
-                            id="table-rajal">
+                            id="table-general">
                             <thead>
                                 <tr>
                                     <th>No</th>

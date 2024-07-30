@@ -1,7 +1,5 @@
 var FormControls = {
-    init: function () {
-        var baseUrl = window.location.origin;
-
+    init: function (baseUrl) {
         $("#insert").validate({
             rules: {
                 nik: {
@@ -57,7 +55,7 @@ var FormControls = {
                                 timer: 2000,
                                 showConfirmButton: false
                             }).then(function () {
-                                window.location.href = '/patients';
+                                window.location.href = '/appointment';
                             });
                         } else {
                             swal({
@@ -84,7 +82,6 @@ var FormControls = {
                 });
             }
         });
-
         $("#update").validate({
             rules: {
                 // Tambahkan aturan validasi jika diperlukan
@@ -110,7 +107,7 @@ var FormControls = {
                                 timer: 2000,
                                 showConfirmButton: false
                             }).then(function () {
-                                window.location.href = '/patients';
+                                window.location.href = '/appointment';
                             });
                         } else {
                             swal({
@@ -140,102 +137,49 @@ var FormControls = {
         $('#m_select2_1, #m_select2_1_validate').select2({
             placeholder: "Select a state"
         });
-    },
-};
 
-var InputAddress = {
-    init: function (baseUrl, selectedProv, selectedKab, selectedKec, selectedDes) {
-        $("#provinsi").change(function () {
-            var url = baseUrl + "/wilayah/add_ajax_kab/" + $(this).val();
-            $('#kabupaten').load(url, function () {
-                // Auto select kabupaten if already selected
-                if (selectedKab) {
-                    $('#kabupaten').val(selectedKab).change();
-                }
-            });
-            return false;
-        });
-
-        $("#kabupaten").change(function () {
-            var url = baseUrl + "/wilayah/add_ajax_kec/" + $(this).val();
-            $('#kecamatan').load(url, function () {
-                // Auto select kecamatan if already selected
-                if (selectedKec) {
-                    $('#kecamatan').val(selectedKec).change();
-                }
-            });
-            return false;
-        });
-
-        $("#kecamatan").change(function () {
-            var url = baseUrl + "/wilayah/add_ajax_des/" + $(this).val();
-            $('#desa').load(url, function () {
-                // Auto select desa if already selected
-                if (selectedDes) {
-                    $('#desa').val(selectedDes);
-                }
-            });
-            return false;
-        });
-
-        // Initialize the selections on page load
-        this.loadInitialSelections(baseUrl, selectedProv, selectedKab, selectedKec, selectedDes);
-    },
-
-    loadInitialSelections: function (baseUrl, selectedProv, selectedKab, selectedKec, selectedDes) {
-        if (selectedProv) {
-            var urlKab = baseUrl + "/wilayah/add_ajax_kab/" + selectedProv;
-            $('#kabupaten').load(urlKab, function () {
-                if (selectedKab) {
-                    $('#kabupaten').val(selectedKab);
-
-                    var urlKec = baseUrl + "/wilayah/add_ajax_kec/" + selectedKab;
-                    $('#kecamatan').load(urlKec, function () {
-                        if (selectedKec) {
-                            $('#kecamatan').val(selectedKec);
-
-                            var urlDes = baseUrl + "/wilayah/add_ajax_des/" + selectedKec;
-                            $('#desa').load(urlDes, function () {
-                                if (selectedDes) {
-                                    $('#desa').val(selectedDes);
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-        }
-    }
-};
-
-var InputJobs = {
-    init: function (baseUrl) {
-        var jobEngine = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.whitespace,
+        var patients = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('nama'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             remote: {
-                url: baseUrl + "/master/occupations/getJobs?term=%QUERY",
+                url: baseUrl + "/patients/get_patients?term=%QUERY",
                 wildcard: '%QUERY',
-                transform: function (response) {
-                    return $.map(response, function (job) {
-                        return {
-                            value: job.occupation_name
-                        };
-                    });
-                }
             }
         });
 
-        $('#job').typeahead({
+        $('#nama').typeahead({
             hint: true,
             highlight: true,
             minLength: 1
         }, {
-            name: 'jobs',
-            display: 'value',
-            source: jobEngine
+            name: 'patients',
+            display: 'nama',
+            source: patients,
+            templates: {
+                suggestion: function (data) {
+                    return '<div>' + data.nama + '</div>';
+                }
+            }
+        }).bind('typeahead:select', function (ev, suggestion) {
+            $("#nama").val(suggestion.nama);
+            $("input[name='tgl_lahir']").val(suggestion.tgl_lahir);
+            $("input[name='mrn']").val(suggestion.mrn);
+            $("select[name='jenis_kelamin']").val(suggestion.jenis_kelamin);
+            $("textarea[name='alamat']").val(suggestion.alamat_lengkap);
+            $("input[name='ktp']").val(suggestion.nik);
+            return false;
         });
-    }
+
+        $('#nama').on('input', function () {
+            if ($(this).val().trim() === '') {
+                $("input[name='tgl_lahir']").val('');
+                $("input[name='mrn']").val('');
+                $("select[name='jenis_kelamin']").val('');
+                $("textarea[name='alamat']").val('');
+                $("input[name='nik']").val('');
+            }
+        });
+    },
 };
 
 
@@ -243,6 +187,4 @@ jQuery(document).ready(function () {
     const baseUrl = window.location.origin;
 
     FormControls.init(baseUrl);
-    InputAddress.init(baseUrl, selectedProv, selectedKab, selectedKec, selectedDes);
-    InputJobs.init(baseUrl);
 });

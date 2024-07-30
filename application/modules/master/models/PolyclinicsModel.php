@@ -33,15 +33,22 @@ class PolyclinicsModel extends CI_Model
 
 
   // ------------------------------------------------------------------------
-  function getData()
+  function getData($cat = false)
   {
     $results = array();
-    $query = $this->db->query("SELECT * FROM" . $this->tableName());
-    if ($query->num_rows() > 0) {
-      $results = $query->result();
+    $query = "SELECT * FROM " . $this->tableName();
+
+    if ($cat) {
+      // Pastikan untuk menghindari SQL injection dengan menggunakan parameter binding
+      $query .= " WHERE kategori = ?";
+      $results = $this->db->query($query, array($cat))->result();
+    } else {
+      $results = $this->db->query($query)->result();
     }
+
     return $results;
   }
+
 
   function save_data($input_mode, $id = '')
   {

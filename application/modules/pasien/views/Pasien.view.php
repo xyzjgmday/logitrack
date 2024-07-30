@@ -10,7 +10,7 @@
                     </h3>
                 </div>
             </div>
-            <?php if ($this->session->userdata('s_level_data') == 1) { ?>
+            <?php //if ($this->session->userdata('s_level_data') == 1) { ?>
                 <div class="m-portlet__head-tools">
                     <ul class="m-portlet__nav">
                         <li class="m-portlet__nav-item">
@@ -23,7 +23,7 @@
                         </li>
                     </ul>
                 </div>
-            <?php } ?>
+            <?php// } ?>
         </div>
         <div class="m-portlet__body">
 

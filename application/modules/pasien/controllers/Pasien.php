@@ -140,6 +140,14 @@ class Pasien extends CI_Controller
     echo json_encode(['exists' => $exists]);
   }
 
+  public function get_patients()
+  {
+    $term = $this->input->get('term');
+    $patients = $this->PasienModel->get_patients_by_name($term);
+    echo json_encode($patients);
+  }
+
+
 }
 
 
