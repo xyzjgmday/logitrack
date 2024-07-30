@@ -14,7 +14,7 @@
                         </path>
                         <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
                         <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
-                    </svg>v.0.0.4 &mdash; PT.Digital Media Utama (DIGIMU) All rights reserved.
+                    </svg>v.0.0.5 &mdash; PT.Digital Media Utama (DIGIMU) All rights reserved.
                 </span>
             </div>
         </div>
