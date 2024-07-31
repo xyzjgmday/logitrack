@@ -33,13 +33,18 @@ class PractitionerModel extends CI_Model
 
 
   // ------------------------------------------------------------------------
-  function getData()
+  function getData($referer = null)
   {
     $results = array();
-    $query = $this->db->query("SELECT a.id, a.nama_nakes, a.role, a.status, b.nama_poli FROM practitioner a INNER JOIN clinics b ON a.poli_id = b.id");
-    if ($query->num_rows() > 0) {
-      $results = $query->result();
+    $query = "SELECT a.id, a.nama_nakes, a.role, a.status, b.nama_poli FROM practitioner a INNER JOIN clinics b ON a.poli_id = b.id";
+
+    if ($referer) {
+      $query .= " WHERE b.id = ? AND a.status = 1";
+      $results = $this->db->query($query, array($referer))->result();
+    } else {
+      $results = $this->db->query($query)->result();
     }
+
     return $results;
   }
 

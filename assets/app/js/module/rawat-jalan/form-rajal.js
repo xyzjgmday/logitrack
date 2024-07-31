@@ -55,7 +55,7 @@ var FormControls = {
                                 timer: 2000,
                                 showConfirmButton: false
                             }).then(function () {
-                                window.location.href = '/appointment';
+                                history.back();
                             });
                         } else {
                             swal({
@@ -107,7 +107,7 @@ var FormControls = {
                                 timer: 2000,
                                 showConfirmButton: false
                             }).then(function () {
-                                window.location.href = '/appointment';
+                                history.back();
                             });
                         } else {
                             swal({

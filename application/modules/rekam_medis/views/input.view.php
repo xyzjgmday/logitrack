@@ -102,7 +102,7 @@
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <span class="font-weight-bold">
-                                    INFORMASI NAKES
+                                    DATA KESAEHATAN
                                 </span>
                             </div>
                         </div>
@@ -110,16 +110,20 @@
                     <div class="m-portlet__body">
                         <div class="form-group m-form__group row pt-0">
                             <div class="col-lg-6">
-                                <label for="pembiayaan" class="form-label font-weight-bold">Pembiayaan <span
-                                        class="m--font-danger">*</span></label>
-                                <select name="pembiayaan" class="form-control m-input" required>
-                                    <option value="">Select</option>
-                                    <option value="1">Pribadi</option>
-                                    <option value="2">BPJS Kesehatan</option>
-                                </select>
+                                <label for="" class="form-label font-weight-bold">Hamil/Menyusui</label>
+                                <div class="m-checkbox-inline">
+                                    <label class="m-checkbox">
+                                        <input type="checkbox" name="is_pregnant" value="1"> Hamil
+                                        <span></span>
+                                    </label>
+                                    <label class="m-checkbox">
+                                        <input type="checkbox" name="is_lactating" value="1"> Menyusui
+                                        <span></span>
+                                    </label>
+                                </div>
                             </div>
                             <div class="col-lg-6">
-                                <label for="no_rjk" class="form-label font-weight-bold">Nomor Rujukan
+                                <label for="no_rjk" class="form-label font-weight-bold">Status Perokok
                                     <small>(Opsional)</small> </label>
                                 <input type="text" class="form-control m-input m-input--solid" name="no_rjk"
                                     data-toggle="m-tooltip" title="No Rujukan" placeholder="Enter your type">
@@ -155,8 +159,8 @@
                                 <label for="no_antrian" class="form-label font-weight-bold">Nomor Antrian <span
                                         class="m--font-danger">*</span></label>
                                 <input type="text" class="form-control m-input m-input--solid" name="no_antrian"
-                                    data-toggle="m-tooltip" title="Nomor Antrian" value="Pasien ke <?= $antrian ?>" required
-                                    readonly>
+                                    data-toggle="m-tooltip" title="Nomor Antrian" value="Pasien ke <?= $antrian ?>"
+                                    required readonly>
                             </div>
                         </div>
                     </div>

@@ -70,3 +70,9 @@ $route['appointment/general'] = "rawat_jalan/index_general";
 //poligigi
 $route['appointment/dentistry/([^/]+)'] = "rawat_jalan/index_dentistry/$1";
 $route['appointment/dentistry'] = "rawat_jalan/index_dentistry";
+
+//registrasi
+$route['appointment/registration'] = "rawat_jalan/registration";
+
+//rekam-medic
+$route['medical-record/vital-sign'] = "rekam_medis/kajian_awal";

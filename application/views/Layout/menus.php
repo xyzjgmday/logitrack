@@ -18,7 +18,7 @@
             </li>
             <li class="m-menu__item  m-menu__item--submenu <?= is_active_submenu(['general', 'dentistry'], 2) ?>"
                 aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;"
-                    class="m-menu__link m-menu__toggle"> <i class="m-menu__link-icon fa fa-notes-medical"></i>
+                    class="m-menu__link m-menu__toggle"> <i class="m-menu__link-icon fa fa-briefcase-medical"></i>
                     <span class="m-menu__link-text">Rawat Jalan</span><i
                         class="m-menu__ver-arrow la la-angle-right"></i></a>
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
@@ -31,6 +31,27 @@
                                 href="<?= base_url('appointment/dentistry') ?>" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Poli Gigi</span></a></li>
+                    </ul>
+                </div>
+            </li>
+            
+        <?php } ?>
+        <?php if ($this->session->userdata('s_level_data') == 1 || $this->session->userdata('s_level_data') == 2) { ?>
+            <li class="m-menu__item  m-menu__item--submenu <?= is_active_submenu(['general', 'dentistry'], 2) ?>"
+                aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;"
+                    class="m-menu__link m-menu__toggle"> <i class="m-menu__link-icon fa fa-notes-medical"></i>
+                    <span class="m-menu__link-text">Rekam Medis</span><i
+                        class="m-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
+                    <ul class="m-menu__subnav">
+                        <li class="m-menu__item <?= is_active('general', 2) ?>" aria-haspopup="true"><a
+                                href="<?= base_url('appointment/general') ?>" class="m-menu__link "><i
+                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                    class="m-menu__link-text">Resume</span></a></li>
+                        <li class="m-menu__item <?= is_active('dentistry', 2) ?>" aria-haspopup="true"><a
+                                href="<?= base_url('appointment/dentistry') ?>" class="m-menu__link "><i
+                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                    class="m-menu__link-text">Pemeriksaan</span></a></li>
                     </ul>
                 </div>
             </li>

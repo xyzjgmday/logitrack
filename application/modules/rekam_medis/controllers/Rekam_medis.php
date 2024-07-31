@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  *
- * Controller Rawat_jalan
+ * Controller Rekam_medis
  *
  * This controller for ...
  *
@@ -15,7 +15,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *
  */
 
-class Rawat_jalan extends CI_Controller
+class Rekam_medis extends CI_Controller
 {
 
   public function __construct()
@@ -99,15 +99,14 @@ class Rawat_jalan extends CI_Controller
     echo $json_data;
   }
 
-  function registration()
+  function kajian_awal()
   {
-    $get_id = $this->PendaftaranRajalModel->get_last_id();
     $get_poli = $this->PolyclinicsModel->getData(1, $this->get_referer());
     $get_nakes = $this->PractitionerModel->getData($this->get_referer());
     $get_no_antrian = $this->PendaftaranRajalModel->generate_no_antrian(date('Y-m-d'), $this->get_referer());
 
     $data = array(
-      'title' => 'Registrasi Rawat Jalan',
+      'title' => 'Kajian Awal',
       'url' => base_url() . 'rawat_jalan/insert_data',
       'poli' => $get_poli,
       'nakes' => $get_nakes,
@@ -115,7 +114,7 @@ class Rawat_jalan extends CI_Controller
       'var' => '<script src="' . base_url() . 'assets/app/js/module/rawat-jalan/form-rajal.js?v=' . time() . '"></script>'
     );
 
-    $this->layout->utama('InputRegistrasi', $data, 'rawat_jalan');
+    $this->layout->utama('input', $data, 'rekam_medis');
   }
 
   function change($id)
@@ -127,7 +126,7 @@ class Rawat_jalan extends CI_Controller
     $get_work = $this->db->select('*')->from('occupations')->get();
 
     $data = array(
-      'title' => 'Ubah Data Rawat_jalan',
+      'title' => 'Ubah Data Rekam_medis',
       'url' => base_url() . 'patients/update_data',
       'provinsi' => $get_prov->result(),
       'agama' => $get_religi->result(),
@@ -210,5 +209,5 @@ class Rawat_jalan extends CI_Controller
 }
 
 
-/* End of file Rawat_jalan.php */
-/* Location: ./application/controllers/Rawat_jalan.php */
+/* End of file Rekam_medis.php */
+/* Location: ./application/controllers/Rekam_medis.php */
