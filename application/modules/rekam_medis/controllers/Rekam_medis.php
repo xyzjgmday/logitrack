@@ -101,17 +101,13 @@ class Rekam_medis extends CI_Controller
 
   function kajian_awal()
   {
-    $get_poli = $this->PolyclinicsModel->getData(1, $this->get_referer());
-    $get_nakes = $this->PractitionerModel->getData($this->get_referer());
-    $get_no_antrian = $this->PendaftaranRajalModel->generate_no_antrian(date('Y-m-d'), $this->get_referer());
+    $get_medhist = $this->db->select('*')->from('medical_history')->get();
 
     $data = array(
       'title' => 'Kajian Awal',
       'url' => base_url() . 'rawat_jalan/insert_data',
-      'poli' => $get_poli,
-      'nakes' => $get_nakes,
-      'antrian' => $get_no_antrian,
-      'var' => '<script src="' . base_url() . 'assets/app/js/module/rawat-jalan/form-rajal.js?v=' . time() . '"></script>'
+      'medical' => $get_medhist->result(),
+      'var' => '<script src="' . base_url() . 'assets/app/js/module/medic-record/form-kajian-awal.js?v=' . time() . '"></script>'
     );
 
     $this->layout->utama('input', $data, 'rekam_medis');

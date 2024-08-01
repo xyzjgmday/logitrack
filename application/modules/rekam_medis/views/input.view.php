@@ -123,44 +123,123 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <label for="no_rjk" class="form-label font-weight-bold">Status Perokok
-                                    <small>(Opsional)</small> </label>
-                                <input type="text" class="form-control m-input m-input--solid" name="no_rjk"
-                                    data-toggle="m-tooltip" title="No Rujukan" placeholder="Enter your type">
-                            </div>
-                        </div>
-                        <div class="m-separator m-separator--dashed m-separator--lg mt-2 mb-3"></div>
-                        <div class="form-group m-form__group row pt-0">
-                            <div class="col-lg-12">
-                                <label for="poli_id" class="form-label font-weight-bold m--font-boldest">Nama Poli
-                                    <span class="m--font-danger">*</span></label>
-                                <select name="poli_id" class="form-control m-input--solid" required>
+                                <label for="stat_smoke" class="form-label font-weight-bold">Status Perokok</label>
+                                <select name="stat_smoke" class="form-control">
                                     <option value="">Select</option>
-                                    <?php foreach ($poli as $value) {
-                                        echo '<option value="' . $value->id . '" selected>' . $value->nama_poli . '</option>';
-                                    } ?>
+                                    <option value="1">Ya</option>
+                                    <option value="0" selected>Tidak merokok</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group m-form__group row">
+                        <div class="form-group m-form__group row pt-0">
                             <div class="col-lg-12">
-                                <label for="nakes_id" class="form-label font-weight-bold m--font-boldest">Nama
-                                    Nakes<span class="m--font-danger">*</span></label>
-                                <select class="form-control m-select2" id="m_select2_1" name="nakes_id">
-                                    <option></option>
-                                    <?php foreach ($nakes as $value) {
-                                        echo '<option value="' . $value->id . '">' . $value->nama_nakes . '</option>';
+                                <label for="no_antrian" class="form-label font-weight-bold">Keluhan Utama <span
+                                        class="m--font-danger">*</span></label>
+                                <input type="text" class="form-control m-input " name="keluhan_utama"
+                                    data-toggle="m-tooltip" title="Keluhan utama pasien" required>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt-0">
+                            <div class="col-lg-12">
+                                <label class="form-label font-weight-bold">Riwayat Penyakit</label>
+                                <select class="form-control m-select2" id="m_select2_3" name="riwayat_penyakit[]"
+                                    multiple="multiple">
+                                    <?php foreach ($medical as $value) {
+                                        echo '<option value="' . $value->id . '">' . $value->name . '</option>';
                                     } ?>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group m-form__group row pt-0">
                             <div class="col-lg-12">
-                                <label for="no_antrian" class="form-label font-weight-bold">Nomor Antrian <span
+                                <label for="no_antrian" class="form-label font-weight-bold">Riwayat Alergi Obat</label>
+                                <input type="text" class="form-control m-input " name="no_antrian"
+                                    data-toggle="m-tooltip" title="Sebutkan">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="font-weight-bold">
+                                    TANDA-TANDA VITAL
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <div class="form-group m-form__group row pt-0">
+                            <div class="col-lg-6">
+                                <label for="suhu" class="form-label font-weight-bold">Suhu Tubuh <span
                                         class="m--font-danger">*</span></label>
-                                <input type="text" class="form-control m-input m-input--solid" name="no_antrian"
-                                    data-toggle="m-tooltip" title="Nomor Antrian" value="Pasien ke <?= $antrian ?>"
-                                    required readonly>
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" name="suhu_tubuh"
+                                        aria-describedby="basic-addon2" required>
+                                    <div class="input-group-append"><span class="input-group-text"
+                                            id="basic-addon2">Celcius</span></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="suhu" class="form-label font-weight-bold">Nadi <span
+                                        class="m--font-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" name="nadi"
+                                        aria-describedby="basic-addon2" required>
+                                    <div class="input-group-append"><span class="input-group-text"
+                                            id="basic-addon2">Kali/Menit</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt-0">
+                            <div class="col-lg-6">
+                                <label for="suhu" class="form-label font-weight-bold">Sistole <span
+                                        class="m--font-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" name="suhu_tubuh"
+                                        aria-describedby="basic-addon2" required>
+                                    <div class="input-group-append"><span class="input-group-text"
+                                            id="basic-addon2">mmHg</span></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="suhu" class="form-label font-weight-bold">Diastole <span
+                                        class="m--font-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" name="nadi"
+                                        aria-describedby="basic-addon2" required>
+                                    <div class="input-group-append"><span class="input-group-text"
+                                            id="basic-addon2">mmHg</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt-0">
+                            <div class="col-lg-6">
+                                <label for="suhu" class="form-label font-weight-bold">Frekuensi Pernafasan <span
+                                        class="m--font-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" name="suhu_tubuh"
+                                        aria-describedby="basic-addon2" required>
+                                    <div class="input-group-append"><span class="input-group-text"
+                                            id="basic-addon2">kali/menit</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt-0">
+                            <div class="col-lg-12">
+                                <label for="no_antrian" class="form-label font-weight-bold">Keluhan Utama <span
+                                        class="m--font-danger">*</span></label>
+                                <input type="text" class="form-control m-input " name="keluhan_utama"
+                                    data-toggle="m-tooltip" title="Keluhan utama pasien" required>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt-0">
+                            <div class="col-lg-12">
+                                <label for="no_antrian" class="form-label font-weight-bold">Riwayat Alergi
+                                    Obat</label>
+                                <input type="text" class="form-control m-input " name="no_antrian"
+                                    data-toggle="m-tooltip" title="Sebutkan">
                             </div>
                         </div>
                     </div>
