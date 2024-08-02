@@ -1,11 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class PendaftaranRajalModel extends CI_Model
+class RemdisModel extends CI_Model
 {
 
-  private $tableName = 'pendaftaran_rajal
-  ';
+  private $tableName = 'initial_assessment';
 
   public function __construct()
   {
@@ -57,66 +56,55 @@ class PendaftaranRajalModel extends CI_Model
     }
   }
 
-  public function save_data($input_mode = false, $id = '')
+  public function save_data($updated = false, $id = '')
   {
     $this->load->library('form_validation');
 
-    $nama = $this->input->post('nama', TRUE);
-    $tgl_lahir = $this->input->post('tgl_lahir', TRUE);
     $mrn = $this->input->post('mrn', TRUE);
-    $ktp = $this->input->post('ktp', TRUE);
-    $pembiayaan = $this->input->post('pembiayaan', TRUE);
-    $jenis_kelamin = $this->input->post('jenis_kelamin', TRUE);
-    $no_rjk = $this->input->post('no_rjk', TRUE);
-    $poli_id = $this->input->post('poli_id', TRUE);
-    $nakes_id = $this->input->post('nakes_id', TRUE);
-    $tgl_konsul = date('Y-m-d');
-    $no_antrian = $this->generate_no_antrian($tgl_konsul, $poli_id);
+
+    if (!$this->check_mrn_exists($mrn)) {
+      return array('success' => false, 'message' => 'Pasien belum terdaftar.');
+    }
 
     $data = array(
-      'nama' => ucwords($nama),
-      'tgl_lahir' => $tgl_lahir,
       'mrn' => $mrn,
-      'ktp' => $ktp,
-      'jenis_kelamin' => $jenis_kelamin,
-      'pembiayaan' => $pembiayaan,
-      'no_rjk' => $no_rjk,
-      'poli_id' => $poli_id,
-      'nakes_id' => $nakes_id,
-      'tgl_konsul' => $tgl_konsul,
-      'no_antrian' => $no_antrian,
+      'ktp' => $this->input->post('ktp', TRUE),
+      'is_pregnant' => $this->input->post('is_pregnant', TRUE),
+      'is_lactating' => $this->input->post('is_lactating', TRUE),
+      'stat_smoke' => $this->input->post('stat_smoke', TRUE),
+      'keluhan_utama' => $this->input->post('keluhan_utama', TRUE),
+      'rwt_alegi_obat' => $this->input->post('rwt_alegi_obat', TRUE),
+      'suhu_tubuh' => $this->input->post('suhu_tubuh', TRUE),
+      'nadi' => $this->input->post('nadi', TRUE),
+      'sistole' => $this->input->post('sistole', TRUE),
+      'diastole' => $this->input->post('diastole', TRUE),
+      'respiratory_rate' => $this->input->post('respiratory_rate', TRUE),
+      'tinggiBadan' => $this->input->post('tinggiBadan', TRUE),
+      'beratBadan' => $this->input->post('beratBadan', TRUE),
+      'imt' => $this->input->post('imt', TRUE),
       'created_at' => date('Y-m-d H:i:s')
     );
 
+    $data['riwayat_penyakit'] = json_encode($this->input->post('riwayat_penyakit', TRUE));
+
     $clean_array = array_map('strip_tags', $data);
 
+    if ($updated) {
+      $this->db->where(array('id' => $id));
+      $this->db->update($this->tableName, $clean_array);
+      return array('success' => true, 'message' => 'Data updated successfully.');
+    } else {
+      $this->db->insert($this->tableName, $clean_array);
+      return array('success' => true, 'message' => 'Data inserted successfully.');
+    }
+  }
+
+  private function check_mrn_exists($mrn)
+  {
     $this->db->where('mrn', $mrn);
-    $this->db->where('DATE(tgl_konsul)', $tgl_konsul);
-    $query = $this->db->get($this->tableName);
+    $query = $this->db->get('pendaftaran_rajal');
 
-    if ($query->num_rows() > 0) {
-      return array(
-        'success' => false,
-        'message' => 'MRN already registered today'
-      );
-    }
-
-    switch ($input_mode) {
-      case true:
-        $this->db->where(array('id' => $id));
-        $this->db->update($this->tableName, $clean_array);
-        return array(
-          'success' => true,
-          'message' => 'Data successfully updated'
-        );
-
-      default:
-        $this->db->insert($this->tableName, $clean_array);
-        return array(
-          'success' => true,
-          'message' => 'Data successfully inserted'
-        );
-    }
+    return $query->num_rows() > 0;
   }
 
   public function generate_no_antrian($tgl_konsul, $registrasi_id)

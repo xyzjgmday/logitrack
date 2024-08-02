@@ -105,64 +105,21 @@ var FormControls = {
             placeholder: " Select a state",
         });
 
-        var patients = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('nama'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            remote: {
-                url: baseUrl + "/patients/get_patients?term=%QUERY",
-                wildcard: '%QUERY',
+        $('#m_repeater_1').repeater({
+            initEmpty: false,
+
+            defaultValues: {
+                'text-input': 'foo'
+            },
+
+            show: function () {
+                $(this).slideDown();
+            },
+
+            hide: function (deleteElement) {
+                $(this).slideUp(deleteElement);
             }
         });
-
-        $('#nama').typeahead({
-            hint: true,
-            highlight: true,
-            minLength: 1
-        }, {
-            name: 'patients',
-            display: 'nama',
-            source: patients,
-            templates: {
-                suggestion: function (data) {
-                    return '<div>' + data.nama + '</div>';
-                }
-            }
-        }).bind('typeahead:select', function (ev, suggestion) {
-            $("#nama").val(suggestion.nama);
-            $("input[name='tgl_lahir']").val(suggestion.tgl_lahir);
-            $("input[name='mrn']").val(suggestion.mrn);
-            $("select[name='jenis_kelamin']").val(suggestion.jenis_kelamin);
-            $("textarea[name='alamat']").val(suggestion.alamat_lengkap);
-            $("input[name='ktp']").val(suggestion.nik);
-            return false;
-        });
-
-        $('#nama').on('input', function () {
-            if ($(this).val().trim() === '') {
-                $("input[name='tgl_lahir']").val('');
-                $("input[name='mrn']").val('');
-                $("select[name='jenis_kelamin']").val('');
-                $("textarea[name='alamat']").val('');
-                $("input[name='nik']").val('');
-            }
-        });
-
-        function calculateIMT() {
-            var tinggiBadan = parseFloat($('#tinggiBadan').val());
-            var beratBadan = parseFloat($('#beratBadan').val());
-
-            tinggiBadan = tinggiBadan / 100;
-
-            if (!isNaN(tinggiBadan) && !isNaN(beratBadan) && tinggiBadan > 0) {
-                var imt = beratBadan / (tinggiBadan * tinggiBadan);
-                $('#imt').val(imt.toFixed(2));
-            } else {
-                $('#imt').val('');
-            }
-        }
-
-        $('#tinggiBadan, #beratBadan').on('input', calculateIMT);
-
     },
 };
 

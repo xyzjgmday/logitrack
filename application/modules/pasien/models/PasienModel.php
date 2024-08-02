@@ -88,44 +88,45 @@ class PasienModel extends CI_Model
   }
 
 
-  function save_data($updated = false, $id = '')
+  public function save_data($updated = false, $id = '')
   {
     $this->load->library('form_validation');
+
     $data = array(
-      'nik' => $this->input->post('nik', TRUE),
-      'bpjs' => $this->input->post('bpjs', TRUE),
-      'nama' => $this->input->post('name', TRUE),
-      'tempat_lahir' => $this->input->post('tmp_lahir', TRUE),
-      'tanggal_lahir' => $this->input->post('tgl_lahir', TRUE),
+      'nama' => $this->input->post('nama', TRUE),
+      'tgl_lahir' => $this->input->post('tgl_lahir', TRUE),
+      'mrn' => $this->input->post('mrn', TRUE),
       'jenis_kelamin' => $this->input->post('jenis_kelamin', TRUE),
-      'gol_darah' => $this->input->post('gol_darah', TRUE),
       'alamat' => $this->input->post('alamat', TRUE),
-      'provinsi_id' => $this->input->post('prov', TRUE),
-      'kota_id' => $this->input->post('kab', TRUE),
-      'kecamatan_id' => $this->input->post('kec', TRUE),
-      'desa_id' => $this->input->post('des', TRUE),
-      'agama_id' => $this->input->post('agama', TRUE),
-      'status_pernikahan' => $this->input->post('stat_kawin', TRUE),
+      'jenis_krt' => $this->input->post('jenis_krt', TRUE),
+      'ktp' => $this->input->post('ktp', TRUE),
+      'is_pregnant' => $this->input->post('is_pregnant', TRUE),
+      'is_lactating' => $this->input->post('is_lactating', TRUE),
+      'stat_smoke' => $this->input->post('stat_smoke', TRUE),
+      'keluhan_utama' => $this->input->post('keluhan_utama', TRUE),
+      'rwt_alegi_obat' => $this->input->post('rwt_alegi_obat', TRUE),
+      'suhu_tubuh' => $this->input->post('suhu_tubuh', TRUE),
+      'nadi' => $this->input->post('nadi', TRUE),
+      'sistole' => $this->input->post('sistole', TRUE),
+      'diastole' => $this->input->post('diastole', TRUE),
+      'respiratory_rate' => $this->input->post('respiratory_rate', TRUE),
+      'tinggiBadan' => $this->input->post('tinggiBadan', TRUE),
+      'beratBadan' => $this->input->post('beratBadan', TRUE),
+      'imt' => $this->input->post('imt', TRUE),
       'created_at' => date('Y-m-d H:i:s')
     );
 
-    if (!$updated) {
-      $data['mrn'] = $this->generate_mr_number();
-    }
-
-    $job_name = $this->input->post('job', TRUE);
-    $data['occupation_id'] = $this->get_or_insert_job($job_name);
+    $data['riwayat_penyakit'] = json_encode($this->input->post('riwayat_penyakit', TRUE));
 
     $clean_array = array_map('strip_tags', $data);
 
-    switch ($updated) {
-      case true:
-        $this->db->where(array('id' => $id));
-        $this->db->update($this->tableName(), $clean_array);
-        return true;
-      default:
-        $this->db->insert($this->tableName(), $clean_array);
-        return true;
+    if ($updated) {
+      $this->db->where(array('id' => $id));
+      $this->db->update($this->tableName, $clean_array);
+      return true;
+    } else {
+      $this->db->insert($this->tableName, $clean_array);
+      return true;
     }
   }
 

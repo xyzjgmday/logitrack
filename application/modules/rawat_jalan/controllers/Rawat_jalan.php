@@ -23,6 +23,7 @@ class Rawat_jalan extends CI_Controller
     parent::__construct();
     $this->auth->cek_auth();
     $this->load->model('PendaftaranRajalModel');
+    $this->load->model('pasien/PasienModel');
     $this->load->model('master/PolyclinicsModel');
     $this->load->model('master/PractitionerModel');
   }
@@ -180,6 +181,37 @@ class Rawat_jalan extends CI_Controller
       ->set_content_type('application/json')
       ->set_output(json_encode($response));
   }
+
+  public function cetak_kartu($mrn)
+  {
+    $this->db->where('mrn', $mrn);
+    $query = $this->db->get($this->PasienModel->tableName());
+
+    if ($query->num_rows() > 0) {
+      $dataPasien = $query->row();
+
+      $nama = $dataPasien->nama;
+      $mrn = $dataPasien->mrn;
+      $tanggal = date('Y-m-d', strtotime($dataPasien->created_at));
+
+      $data = array(
+        'title' => 'Cetak Pasien ' . $nama,
+        'nama' => $nama,
+        'mrn' => $mrn,
+        'tanggal' => tglIndo($tanggal),
+      );
+
+      $this->load->view('cetak_kartu', $data);
+    } else {
+      $data = array(
+        'title' => 'Error',
+        'message' => 'Data pasien tidak ditemukan.'
+      );
+
+      $this->load->view('error_view', $data);
+    }
+  }
+
 
   public function check_nik()
   {

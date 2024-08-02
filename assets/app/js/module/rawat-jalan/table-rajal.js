@@ -7,8 +7,8 @@ var DatatablesBasicPaginations = function () {
 	var secondSegment = segments[1];
 	var lastSegment = segments[2] ? `/${segments[2]}` : '';
 
-	var updateUrl = "/rawat_jalan/change/";
-	var deleteUrl = "/rawat_jalan/delete/";
+	var updateUrl = "/medical-record/create/";
+	var printUrl = "/rawat_jalan/cetak_kartu/";
 	var listUrl = "/rawat_jalan/viewlist/";
 
 	var initTable1 = function () {
@@ -44,9 +44,9 @@ var DatatablesBasicPaginations = function () {
 					orderable: false,
 					// visible: isSIUUUUU(),
 					render: function (data, type, full, meta) {
-						return `<a href="${baseUrl + updateUrl + full.id}" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
-							<i class="la la-edit"></i>
-						</a>&nbsp;&nbsp;<a href="javascript:;" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" onclick="confirmDelete('${baseUrl + deleteUrl + full.id}')">
+						return `<a href="${baseUrl + updateUrl + full.mrn}" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" title="Periksa">
+							<i class="fa fa-notes-medical"></i>
+						</a>&nbsp;&nbsp;<a href="javascript:;" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" title="Cetak Kartu" onclick="confirmCetak('${baseUrl + printUrl + full.mrn}')">
 							<i class="la la-print"></i>
 						</a>`;
 					}
@@ -104,35 +104,25 @@ var DatatablesBasicPaginations = function () {
 	};
 }();
 
-function confirmDelete(deleteUrl) {
+function confirmCetak(printUrl) {
 	swal({
 		title: "Konfirmasi",
-		text: "Apakah Anda yakin ingin menonaktifkan?",
+		text: "Apakah Anda yakin ingin mencetak kartu?",
 		type: "warning",
 		showCancelButton: true,
 		confirmButtonClass: "btn btn-danger m-btn m-btn--custom",
 		confirmButtonText: "Ya!",
-	})
-		.then((result) => {
-			if (result.value) {
-				$.ajax({
-					url: deleteUrl,
-					type: 'POST',
-					dataType: 'json',
-					success: function (response) {
-						if (response.success) {
-							swal("Berhasil", "Pasien tidak aktif.", "success");
-							$('#table-pasien').DataTable().ajax.reload();
-						} else {
-							swal("Gagal", "Terjadi kesalahan saat memproses data.", "error");
-						}
-					},
-					error: function () {
-						swal("Gagal", "Terjadi kesalahan saat memproses data.", "error");
-					}
-				});
-			}
-		});
+		cancelButtonText: "Tidak",
+		closeOnConfirm: true,
+		closeOnCancel: true
+	}).then((result) => {
+		if (result.value) {
+			var printWindow = window.open(printUrl, '_blank');
+			printWindow.onload = function () {
+				// printWindow.print();
+			};
+		}
+	});
 }
 
 jQuery(document).ready(function () {

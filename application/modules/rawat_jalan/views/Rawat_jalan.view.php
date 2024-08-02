@@ -61,7 +61,7 @@
                                     <th>Antrian</th>
                                     <th>Tanggal Konsul</th>
                                     <th>Dokter</th>
-                                    <th>Status</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                         </table>

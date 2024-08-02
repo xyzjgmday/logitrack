@@ -67,6 +67,7 @@ $route['patients'] = "pasien";
 $route['appointment/general/([^/]+)'] = "rawat_jalan/index_general/$1";
 $route['appointment/general'] = "rawat_jalan/index_general";
 
+
 //poligigi
 $route['appointment/dentistry/([^/]+)'] = "rawat_jalan/index_dentistry/$1";
 $route['appointment/dentistry'] = "rawat_jalan/index_dentistry";
@@ -76,3 +77,8 @@ $route['appointment/registration'] = "rawat_jalan/registration";
 
 //rekam-medic
 $route['medical-record/vital-sign'] = "rekam_medis/kajian_awal";
+
+//medical-record
+$route['medical-record/(:any)/(:any)'] = "rekam_medis/$1/$2";
+$route['medical-record/([^/]+)'] = "rekam_medis/$1";
+$route['medical-record'] = "rekam_medis";

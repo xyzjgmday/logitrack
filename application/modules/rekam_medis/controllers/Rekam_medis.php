@@ -22,12 +22,12 @@ class Rekam_medis extends CI_Controller
   {
     parent::__construct();
     $this->auth->cek_auth();
-    $this->load->model('PendaftaranRajalModel');
+    $this->load->model('RemdisModel');
     $this->load->model('master/PolyclinicsModel');
     $this->load->model('master/PractitionerModel');
   }
 
-  function index_general($params = null)
+  function index($params = null)
   {
     switch ($params) {
       case 'waiting':
@@ -58,42 +58,11 @@ class Rekam_medis extends CI_Controller
     $this->layout->utama('rawat_jalan', $data, 'rawat_jalan');
   }
 
-  public function index_dentistry($params = null)
-  {
-    switch ($params) {
-      case 'waiting':
-        $tab_active = "#m_tabs_3_2";
-        break;
-
-      case 'done':
-        $tab_active = "#m_tabs_3_3";
-        break;
-
-      case 'cancel':
-        $tab_active = "#m_tabs_3_4";
-        break;
-
-      default:
-        $tab_active = "#m_tabs_3_1";
-        break;
-    }
-
-    $data = [
-      'title' => "Rawat Jalan - Poli Gigi",
-      'url' => base_url() . 'appointment/registration',
-      'url_tabs' => base_url() . 'appointment/dentistry',
-      'tabs' => $tab_active,
-      'var' => '<script src="' . base_url() . 'assets/app/js/module/rawat-jalan/table-rajal.js?v=' . time() . '"></script>'
-    ];
-
-    $this->layout->utama('rawat_jalan', $data, 'rawat_jalan');
-  }
-
   function viewlist($params, $status = null)
   {
     $id = ($params === "general") ? 1 : 2;
     header("Content-Type: application/json");
-    $result = $this->PendaftaranRajalModel->getData($id, $status);
+    $result = $this->RemdisModel->getData($id, $status);
     $json_data = json_encode(['data' => $result]);
 
     echo $json_data;
@@ -105,12 +74,26 @@ class Rekam_medis extends CI_Controller
 
     $data = array(
       'title' => 'Kajian Awal',
-      'url' => base_url() . 'rawat_jalan/insert_data',
+      'url' => base_url() . 'rekam_medis/insert_data',
       'medical' => $get_medhist->result(),
       'var' => '<script src="' . base_url() . 'assets/app/js/module/medic-record/form-kajian-awal.js?v=' . time() . '"></script>'
     );
 
     $this->layout->utama('input', $data, 'rekam_medis');
+  }
+
+  function create()
+  {
+    $get_medhist = $this->db->select('*')->from('medical_history')->get();
+
+    $data = array(
+      'title' => 'Pemeriksaan Pasien',
+      'url' => base_url() . 'rekam_medis/insert_data',
+      'medical' => $get_medhist->result(),
+      'var' => '<script src="' . base_url() . 'assets/app/js/module/medic-record/form-create.js?v=' . time() . '"></script>'
+    );
+
+    $this->layout->utama('create', $data, 'rekam_medis');
   }
 
   function change($id)
@@ -135,7 +118,7 @@ class Rekam_medis extends CI_Controller
 
   function insert_data()
   {
-    $response = $this->PendaftaranRajalModel->save_data();
+    $response = $this->RemdisModel->save_data();
     header('Content-Type: application/json');
     echo json_encode($response);
   }

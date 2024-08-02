@@ -92,6 +92,7 @@
                                 <label for="ktp" class="form-label font-weight-bold">Nomor Kartu Identitas <span
                                         class="m--font-danger">*</span></label>
                                 <input type="text" class="form-control m-input m-input--solid" name="ktp"
+
                                     data-toggle="m-tooltip" title="KTP" placeholder="Enter your type" readonly>
                             </div>
                         </div>
@@ -153,7 +154,7 @@
                         <div class="form-group m-form__group row pt-0">
                             <div class="col-lg-12">
                                 <label for="no_antrian" class="form-label font-weight-bold">Riwayat Alergi Obat</label>
-                                <input type="text" class="form-control m-input " name="no_antrian"
+                                <input type="text" class="form-control m-input " name="rwt_alegi_obat"
                                     data-toggle="m-tooltip" title="Sebutkan">
                             </div>
                         </div>
@@ -197,7 +198,7 @@
                                 <label for="suhu" class="form-label font-weight-bold">Sistole <span
                                         class="m--font-danger">*</span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control m-input" name="suhu_tubuh"
+                                    <input type="text" class="form-control m-input" name="sistole"
                                         aria-describedby="basic-addon2" required>
                                     <div class="input-group-append"><span class="input-group-text"
                                             id="basic-addon2">mmHg</span></div>
@@ -207,7 +208,7 @@
                                 <label for="suhu" class="form-label font-weight-bold">Diastole <span
                                         class="m--font-danger">*</span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control m-input" name="nadi"
+                                    <input type="text" class="form-control m-input" name="diastole"
                                         aria-describedby="basic-addon2" required>
                                     <div class="input-group-append"><span class="input-group-text"
                                             id="basic-addon2">mmHg</span></div>
@@ -219,27 +220,46 @@
                                 <label for="suhu" class="form-label font-weight-bold">Frekuensi Pernafasan <span
                                         class="m--font-danger">*</span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control m-input" name="suhu_tubuh"
+                                    <input type="text" class="form-control m-input" name="respiratory_rate"
                                         aria-describedby="basic-addon2" required>
                                     <div class="input-group-append"><span class="input-group-text"
                                             id="basic-addon2">kali/menit</span></div>
                                 </div>
                             </div>
                         </div>
+                        <div class="m-separator m-separator--dashed m-separator--lg mt-2 mb-3"></div>
+                        <div class="form-group m-form__group pt-0">
+                            <small>PEMERIKSAAN FISIK</small>
+                        </div>
                         <div class="form-group m-form__group row pt-0">
-                            <div class="col-lg-12">
-                                <label for="no_antrian" class="form-label font-weight-bold">Keluhan Utama <span
-                                        class="m--font-danger">*</span></label>
-                                <input type="text" class="form-control m-input " name="keluhan_utama"
-                                    data-toggle="m-tooltip" title="Keluhan utama pasien" required>
+                            <div class="col-lg-6">
+                                <label for="tinggiBadan" class="form-label font-weight-bold">Tinggi Badan</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" id="tinggiBadan" name="tinggiBadan"
+                                        aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">cm</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="beratBadan" class="form-label font-weight-bold">Berat Badan</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input" id="beratBadan" name="beratBadan"
+                                        aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">kg</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group m-form__group row pt-0">
-                            <div class="col-lg-12">
-                                <label for="no_antrian" class="form-label font-weight-bold">Riwayat Alergi
-                                    Obat</label>
-                                <input type="text" class="form-control m-input " name="no_antrian"
-                                    data-toggle="m-tooltip" title="Sebutkan">
+                            <div class="col-lg-6">
+                                <label for="imt" class="form-label font-weight-bold">IMT</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control m-input m-input--solid" id="imt" name="imt"
+                                        aria-describedby="basic-addon2" readonly>
+                                </div>
                             </div>
                         </div>
                     </div>
