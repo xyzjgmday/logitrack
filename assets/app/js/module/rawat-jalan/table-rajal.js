@@ -23,7 +23,7 @@ var DatatablesBasicPaginations = function () {
 				url: baseUrl + listUrl + secondSegment + lastSegment,
 				type: 'POST',
 				data: {
-					columnsDef: ["id", "nama", "mrn", "jenis_kelamin", "no_antrian", "tgl_konsul", "nama_nakes"]
+					columnsDef: ["id", "nama", "mrn", "jenis_kelamin", "no_antrian", "tgl_konsul", "nama_nakes", "status"]
 				}
 			},
 			columns: [
@@ -44,11 +44,20 @@ var DatatablesBasicPaginations = function () {
 					orderable: false,
 					// visible: isSIUUUUU(),
 					render: function (data, type, full, meta) {
-						return `<a href="${baseUrl + updateUrl + full.mrn}" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" title="Periksa">
-							<i class="fa fa-notes-medical"></i>
-						</a>&nbsp;&nbsp;<a href="javascript:;" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" title="Cetak Kartu" onclick="confirmCetak('${baseUrl + printUrl + full.mrn}')">
-							<i class="la la-print"></i>
-						</a>`;
+						let isDone = full.status === 'done';
+						return `
+								<a href="${isDone ? 'javascript:;' : baseUrl + updateUrl + full.mrn}" 
+								class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air ${isDone ? 'disabled-link' : ''}" 
+								title="Periksa"
+								${isDone ? 'onclick="return false;"' : ''}>
+									<i class="fa fa-notes-medical"></i>
+								</a>&nbsp;&nbsp;
+								<a href="javascript:;" 
+								class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" 
+								title="Cetak Kartu" 
+								onclick="confirmCetak('${baseUrl + printUrl + full.mrn}')">
+									<i class="la la-print"></i>
+								</a>`;
 					}
 				},
 				{

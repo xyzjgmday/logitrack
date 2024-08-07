@@ -26,6 +26,7 @@ class PendaftaranRajalModel extends CI_Model
             a.jenis_kelamin,
             a.no_antrian,
             a.tgl_konsul,
+            a.status,
             b.nama_nakes 
         FROM
             pendaftaran_rajal a

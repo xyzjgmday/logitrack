@@ -9,7 +9,7 @@ var DatatablesBasicPaginations = function () {
 
 	var updateUrl = "/rawat_jalan/change/";
 	var deleteUrl = "/rawat_jalan/delete/";
-	var listUrl = "/rawat_jalan/viewlist/";
+	var listUrl = "/rekam_medis/viewlist/";
 
 	var initTable1 = function () {
 		jkObj = {
@@ -17,7 +17,7 @@ var DatatablesBasicPaginations = function () {
 			0: { title: 'Perempuan' },
 		};
 
-		$('#table-rajal').DataTable({
+		$('#table-remdis').DataTable({
 			responsive: true,
 			ajax: {
 				url: baseUrl + listUrl + secondSegment + lastSegment,
@@ -33,6 +33,7 @@ var DatatablesBasicPaginations = function () {
 				{ data: 'no_antrian' },
 				{ data: 'tgl_konsul' },
 				{ data: 'nama_nakes' },
+				{ data: 'keluhan_utama' },
 				{ data: '' }
 			],
 			rowCallback: function (row, data, index) {
@@ -93,7 +94,8 @@ var DatatablesBasicPaginations = function () {
 			processing: true,
 		});
 
-		$('#table-general thead th').css('background-color', '#f2f2f2');
+		$('#table-remdis thead th').css('background-color', '#f2f2f2');
+
 	};
 
 	return {
@@ -135,6 +137,47 @@ function confirmDelete(deleteUrl) {
 		});
 }
 
+var FormControls = {
+	init: function (baseUrl) {
+		var patients = new Bloodhound({
+			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('nama'),
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			remote: {
+				url: baseUrl + "/patients/get_patients?term=%QUERY",
+				wildcard: '%QUERY',
+			}
+		});
+
+		$('#nama').typeahead({
+			hint: true,
+			highlight: true,
+			minLength: 1
+		}, {
+			name: 'patients',
+			display: 'nama',
+			source: patients,
+			templates: {
+				suggestion: function (data) {
+					return '<div>' + data.nama + '</div>';
+				}
+			}
+		}).bind('typeahead:select', function (ev, suggestion) {
+			$("#nama").val(suggestion.nama);
+			$("input[name='mrn']").val(suggestion.mrn);
+			return false;
+		});
+
+		$('#nama').on('input', function () {
+			if ($(this).val().trim() === '') {
+				$("input[name='mrn']").val('');
+			}
+		});
+	},
+};
+
 jQuery(document).ready(function () {
+	const baseUrl = window.location.origin;
+	FormControls.init(baseUrl);
+
 	DatatablesBasicPaginations.init();
 });

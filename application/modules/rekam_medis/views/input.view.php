@@ -92,7 +92,6 @@
                                 <label for="ktp" class="form-label font-weight-bold">Nomor Kartu Identitas <span
                                         class="m--font-danger">*</span></label>
                                 <input type="text" class="form-control m-input m-input--solid" name="ktp"
-
                                     data-toggle="m-tooltip" title="KTP" placeholder="Enter your type" readonly>
                             </div>
                         </div>

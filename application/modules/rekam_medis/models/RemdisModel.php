@@ -116,25 +116,24 @@ class RemdisModel extends CI_Model
     return $count + 1;
   }
 
-  private function generate_nomor_kartu()
-  {
-    return 'KRT' . strtoupper(uniqid());
-  }
-
   public function get_patient_by_id($id)
   {
     return $this->db->get_where($this->table, array('id' => $id))->row();
   }
 
-  public function get_all_patients()
+  public function get_patient_subjective($mrn = NULL, $status = NULL)
   {
-    return $this->db->get($this->table)->result();
-  }
+    $this->db->select('a.mrn, a.nama, a.tanggal_lahir, a.jenis_kelamin, a.gol_darah, b.is_pregnant, b.is_lactating, b.stat_smoke, b.keluhan_utama, b.rwt_alegi_obat, b.riwayat_penyakit');
+    $this->db->from('patients AS a');
+    $this->db->join('initial_assessment AS b', 'a.mrn = b.mrn', 'inner');
 
-  public function delete_patient($id)
-  {
-    $this->db->where('id', $id);
-    $this->db->delete($this->table);
-    return $this->db->affected_rows();
+    if ($mrn) {
+      $this->db->where('a.mrn', $mrn);
+    } else {
+      $this->db->where('a.mrn', $mrn);
+    }
+
+    $query = $this->db->get();
+    return $query->row();
   }
 }

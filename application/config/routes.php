@@ -63,6 +63,11 @@ $route['patients/(:any)/(:any)'] = "pasien/$1/$2";
 $route['patients/([^/]+)'] = "pasien/$1";
 $route['patients'] = "pasien";
 
+//pharmacy
+$route['pharmacy/drugs(:any)/(:any)'] = "apotek/$1/$2";
+$route['pharmacy/drugs/insert'] = "apotek/insert";
+$route['pharmacy/drugs'] = "apotek";
+
 //poliumum
 $route['appointment/general/([^/]+)'] = "rawat_jalan/index_general/$1";
 $route['appointment/general'] = "rawat_jalan/index_general";
@@ -75,10 +80,11 @@ $route['appointment/dentistry'] = "rawat_jalan/index_dentistry";
 //registrasi
 $route['appointment/registration'] = "rawat_jalan/registration";
 
+//medical-record
+$route['medical-record/resume/([^/]+)'] = "rekam_medis/index/$1";
+$route['medical-record/resume'] = "rekam_medis/index";
+
+$route['medical-record/create/([^/]+)'] = "rekam_medis/create/$1";
+
 //rekam-medic
 $route['medical-record/vital-sign'] = "rekam_medis/kajian_awal";
-
-//medical-record
-$route['medical-record/(:any)/(:any)'] = "rekam_medis/$1/$2";
-$route['medical-record/([^/]+)'] = "rekam_medis/$1";
-$route['medical-record'] = "rekam_medis";

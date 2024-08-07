@@ -37,14 +37,15 @@
                                 <div class="m-typeahead">
                                     <input type="text" class="form-control m-input" name="nama" id="nama"
                                         data-toggle="m-tooltip" dir="ltr" title="Nama Pasien"
-                                        placeholder="Enter your type" required>
+                                        placeholder="Enter your type" value="<?= $subject->nama ?>" readonly>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <label for="mrn" class="form-label font-weight-bold">No. MRN <span
                                         class="m--font-danger">*</span></label>
                                 <input type="text" class="form-control m-input" name="mrn" data-toggle="m-tooltip"
-                                    title="Nama Pasien" placeholder="Enter your type" required>
+                                    title="Nama Pasien" placeholder="Enter your type" value="<?= $subject->mrn ?>"
+                                    readonly>
                             </div>
                         </div>
                     </div>
@@ -67,11 +68,12 @@
                             <div class="col-lg-6">
                                 <label for="tgl_lahir" class="form-label font-weight-bold">Tanggal Lahir</label>
                                 <br>
-                                <label for="tgl_lahir">Tanggal Lahir</label>
+                                <label for="tgl_lahir"><?= tglIndo($subject->tanggal_lahir) ?></label>
                             </div>
                             <div class="col-lg-6">
                                 <label for="tgl_lahir" class="form-label font-weight-bold">Jenis Kelamin</label><br>
-                                <label for="tgl_lahir">Laki-laki</label>
+                                <label
+                                    for="tgl_lahir"><?= ($subject->jenis_kelamin == 1) ? "Laki-laki" : "Perempuan" ?></label>
                             </div>
                         </div>
                         <div class="form-group m-form__group row pt-0">
@@ -93,50 +95,60 @@
                             <div class="col-lg-6">
                                 <label for="" class="form-label font-weight-bold">Hamil</label>
                                 <div class="m-checkbox-inline">
-                                    <label for="" class="form-label">Tidak</label>
+                                    <label for=""
+                                        class="form-label"><?= ($subject->is_pregnant == 1) ? "Ya" : "Tidak" ?></label>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <label for="" class="form-label font-weight-bold">Menyusui</label>
                                 <div class="m-checkbox-inline">
-                                    <label for="" class="form-label">Tidak</label>
+                                    <label for=""
+                                        class="form-label"><?= ($subject->is_lactating == 1) ? "Ya" : "Tidak" ?></label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group m-form__group row pt-0">
                             <div class="col-lg-6">
                                 <label for="stat_smoke" class="form-label font-weight-bold">Golongan Darah</label><br>
-                                <label for="stat_smoke" class="form-label">-</label>
+                                <label for="stat_smoke" class="form-label"><?= $subject->gol_darah ?></label>
                             </div>
                             <div class="col-lg-6">
                                 <label for="stat_smoke" class="form-label font-weight-bold">Status Perokok</label><br>
-                                <label for="stat_smoke" class="form-label">Tidak</label>
+                                <label for="stat_smoke"
+                                    class="form-label"><?= ($subject->stat_smoke == 1) ? "Ya" : "Tidak" ?></label>
                             </div>
                         </div>
                         <div class="form-group m-form__group row pt-0">
                             <div class="col-lg-12">
                                 <label class="form-label font-weight-bold">Riwayat Penyakit</label>
-                                <select class="form-control m-select2" id="m_select2_3" name="riwayat_penyakit[]"
-                                    multiple="multiple">
-                                    <?php foreach ($medical as $value) {
-                                        echo '<option value="' . $value->id . '">' . $value->name . '</option>';
-                                    } ?>
+                                <select class="form-control m-select2 m-input--solid" id="m_select2_3"
+                                    name="riwayat_penyakit[]" multiple="multiple" disabled>
+                                    <?php
+                                    foreach ($medical as $value): ?>
+                                        <?php
+                                        $selected = in_array($value->id, $riwayat_penyakit_array) ? ' selected' : '';
+                                        ?>
+                                        <option value="<?php echo $value->id; ?>" <?php echo $selected; ?>>
+                                            <?php echo $value->name; ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group m-form__group row pt-0">
                             <div class="col-lg-12">
                                 <label for="no_antrian" class="form-label font-weight-bold">Riwayat Alergi Obat</label>
-                                <input type="text" class="form-control m-input " name="rwt_alegi_obat"
-                                    data-toggle="m-tooltip" title="Sebutkan">
+                                <input type="text" class="form-control m-input m-input--solid" name="rwt_alegi_obat"
+                                    data-toggle="m-tooltip" title="Sebutkan" readonly>
                             </div>
                         </div>
                         <div class="form-group m-form__group row pt-0">
                             <div class="col-lg-12">
-                                <label for="no_antrian" class="form-label font-weight-bold">Keluhan Utama <span
+                                <label for="no_antrian" class="form-label font-weight-bold">Keluhan <span
                                         class="m--font-danger">*</span></label>
-                                <input type="text" class="form-control m-input " name="keluhan_utama"
-                                    data-toggle="m-tooltip" title="Keluhan utama pasien" required>
+                                <input type="text" class="form-control m-input m-input--solid" name="keluhan_utama"
+                                    data-toggle="m-tooltip" title="Keluhan utama pasien"
+                                    value="<?= $subject->keluhan_utama ?>" readonly>
                             </div>
                         </div>
                     </div>
@@ -176,43 +188,56 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group m-form__group row pt-0">
+                            <div class="col-lg-12">
+                                <label for="no_antrian" class="form-label font-weight-bold">Layanan/Tindakan <span
+                                        class="m--font-danger">*</span></label>
+                                <select class="form-control m-select2" id="m_select2_1" name="layanan_id[]"
+                                    multiple="multiple">
+                                    <option></option>
+                                    <?php foreach ($services as $value) {
+                                        echo '<option value="' . $value->id . '">' . $value->name . '</option>';
+                                    } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="m-separator m-separator--dashed m-separator--lg mt-2 mb-3"></div>
                         <div id="m_repeater_1">
-                            <div class="form-group  m-form__group row" id="m_repeater_1">
+                            <div class="form-group m-form__group row">
                                 <div class="col-lg-12">
-                                    <label class="form-label font-weight-bold">Layanan/Tindakan</label>
-                                    <div data-repeater-list="" class="col-lg-12" style="padding-left:0">
+                                    <label class="form-label font-weight-bold">Pilih Obat</label>
+                                    <div data-repeater-list="" class="col-lg-16" style="margin-left: -60px;">
                                         <div data-repeater-item class="form-group m-form__group row">
                                             <div class="col-lg-6">
-                                                <div class="m-form__group m-form__group--inline">
+                                                <div class="m-form__group m-form__group--inline"
+                                                    style="padding-right: 0px;">
                                                     <div class="m-form__label">
-                                                        <label class="">Nama Layanan</label>
+                                                        <label class="">Obat*</label>
                                                     </div>
-                                                    <div class="m-form__control">
-                                                        <input type="email" class="form-control m-input"
-                                                            placeholder="Enter full name">
+                                                    <div class="m-form__control m-typeahead">
+                                                        <input type="text" class="form-control m-input drug" name="obat"
+                                                            data-toggle="m-tooltip" title="Pilih Obat" required>
                                                     </div>
                                                 </div>
                                                 <div class="d-md-none m--margin-bottom-10"></div>
                                             </div>
                                             <div class="col-lg-4">
-                                                <div class="m-form__group m-form__group--inline">
+                                                <div class="m-form__group m-form__group--inline"
+                                                    style="padding-right: 0px;">
                                                     <div class="m-form__label">
-                                                        <label class="m-label m-label--single">Number:</label>
+                                                        <label class="">Dosis*</label>
                                                     </div>
                                                     <div class="m-form__control">
-                                                        <input type="email" class="form-control m-input"
-                                                            placeholder="Enter contact number">
+                                                        <input type="text" class="form-control m-input" name="dosis"
+                                                            required>
                                                     </div>
                                                 </div>
                                                 <div class="d-md-none m--margin-bottom-10"></div>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-lg-2">
                                                 <div data-repeater-delete=""
-                                                    class="btn-sm btn btn-danger m-btn m-btn--icon m-btn--pill">
-                                                    <span>
-                                                        <i class="la la-trash-o"></i>
-                                                        <span>Delete</span>
-                                                    </span>
+                                                    class="btn btn-outline-danger m-btn m-btn--icon btn-lg m-btn--icon-only m-btn--pill m-btn--air">
+                                                    <i class="la la-trash-o"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -237,7 +262,7 @@
                             <div class="col-lg-6">
                                 <label for="prognosa" class="form-label font-weight-bold">Status Pulang <span
                                         class="m--font-danger">*</span></label>
-                                <select name="prognosa" class="form-control" required>
+                                <select name="status_pulang" class="form-control" required>
                                     <option value="">Pilih statys</option>
                                     <option value="1">Berobat Jalan</option>
                                     <option value="1">Sehat</option>

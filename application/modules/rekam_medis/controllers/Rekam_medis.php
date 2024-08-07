@@ -30,16 +30,8 @@ class Rekam_medis extends CI_Controller
   function index($params = null)
   {
     switch ($params) {
-      case 'waiting':
+      case 'follow-up':
         $tab_active = "#m_tabs_3_2";
-        break;
-
-      case 'done':
-        $tab_active = "#m_tabs_3_3";
-        break;
-
-      case 'cancel':
-        $tab_active = "#m_tabs_3_4";
         break;
 
       default:
@@ -48,21 +40,20 @@ class Rekam_medis extends CI_Controller
     }
 
     $data = [
-      'title' => "Rawat Jalan - Poli Umum",
-      'url' => base_url() . 'appointment/registration',
-      'url_tabs' => base_url() . 'appointment/general',
+      'title' => "Rekam Medis",
+      'url' => base_url() . 'medical-record/create',
+      'url_tabs' => base_url() . 'medical-record/resume',
       'tabs' => $tab_active,
-      'var' => '<script src="' . base_url() . 'assets/app/js/module/rawat-jalan/table-rajal.js?v=' . time() . '"></script>'
+      'var' => '<script src="' . base_url() . 'assets/app/js/module/medic-record/table-remdik.js?v=' . time() . '"></script>'
     ];
 
-    $this->layout->utama('rawat_jalan', $data, 'rawat_jalan');
+    $this->layout->utama('remdis', $data, 'rekam_medis');
   }
 
-  function viewlist($params, $status = null)
+  function viewlist($status = null)
   {
-    $id = ($params === "general") ? 1 : 2;
     header("Content-Type: application/json");
-    $result = $this->RemdisModel->getData($id, $status);
+    $result = $this->RemdisModel->get_patient_subjective($status);
     $json_data = json_encode(['data' => $result]);
 
     echo $json_data;
@@ -82,14 +73,18 @@ class Rekam_medis extends CI_Controller
     $this->layout->utama('input', $data, 'rekam_medis');
   }
 
-  function create()
+  function create($mrn)
   {
     $get_medhist = $this->db->select('*')->from('medical_history')->get();
-
+    $get_service = $this->db->select('*')->from('services')->get();
+    $get_subjective = $this->RemdisModel->get_patient_subjective($mrn);
     $data = array(
       'title' => 'Pemeriksaan Pasien',
       'url' => base_url() . 'rekam_medis/insert_data',
       'medical' => $get_medhist->result(),
+      'services' => $get_service->result(),
+      'subject' => $get_subjective,
+      'riwayat_penyakit_array' => json_decode($get_subjective->riwayat_penyakit, true),
       'var' => '<script src="' . base_url() . 'assets/app/js/module/medic-record/form-create.js?v=' . time() . '"></script>'
     );
 

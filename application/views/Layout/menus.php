@@ -34,18 +34,18 @@
                     </ul>
                 </div>
             </li>
-            
+
         <?php } ?>
         <?php if ($this->session->userdata('s_level_data') == 1 || $this->session->userdata('s_level_data') == 2) { ?>
-            <li class="m-menu__item  m-menu__item--submenu <?= is_active_submenu(['medical-record', 'dentistry'], 1) ?>"
+            <li class="m-menu__item  m-menu__item--submenu <?= is_active_submenu(['resume', 'dentistry'], 2) ?>"
                 aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;"
                     class="m-menu__link m-menu__toggle"> <i class="m-menu__link-icon fa fa-notes-medical"></i>
                     <span class="m-menu__link-text">Rekam Medis</span><i
                         class="m-menu__ver-arrow la la-angle-right"></i></a>
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
-                        <li class="m-menu__item <?= is_active('medical-record', 1) ?>" aria-haspopup="true"><a
-                                href="<?= base_url('medical-record') ?>" class="m-menu__link "><i
+                        <li class="m-menu__item <?= is_active('resume', 2) ?>" aria-haspopup="true"><a
+                                href="<?= base_url('medical-record/resume') ?>" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Resume</span></a></li>
                         <li class="m-menu__item <?= is_active('dentistry', 2) ?>" aria-haspopup="true"><a
@@ -69,6 +69,23 @@
                 <i class="m-menu__link-icon flaticon-users"></i>
                 <span class="m-menu__link-text">Pasien</span>
             </a>
+        </li>
+        <li class="m-menu__section ">
+            <h4 class="m-menu__section-text">Inventori</h4>
+            <i class="m-menu__section-icon flaticon-more-v2"></i>
+        </li>
+        <li class="m-menu__item  m-menu__item--submenu <?= is_active_submenu(['drugs'], 2) ?>" aria-haspopup="true"
+            m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i
+                    class="m-menu__link-icon fa fa-flask"></i><span class="m-menu__link-text">Apotek</span><i
+                    class="m-menu__ver-arrow la la-angle-right"></i></a>
+            <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
+                <ul class="m-menu__subnav">
+                    <li class="m-menu__item <?= is_active('drugs', 2) ?>" aria-haspopup="true"><a
+                            href="<?= base_url('pharmacy/drugs') ?>" class="m-menu__link "><i
+                                class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                class="m-menu__link-text">Obat</span></a></li>
+                </ul>
+            </div>
         </li>
         <?php if ($this->session->userdata('s_level_data') == 1) { ?>
             <li class="m-menu__section ">
