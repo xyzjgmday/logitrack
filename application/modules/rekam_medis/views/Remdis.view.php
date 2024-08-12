@@ -12,8 +12,7 @@
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <a href="javascript:;" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air"
-                            data-toggle="modal" data-target="#m_modal_1">
+                        <a href="<?= $url; ?>" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air">
                             <span>
                                 <i class="la la-plus"></i>
                                 <span>Buat Kajian Awal</span>
@@ -46,8 +45,6 @@
                                 <th>No</th>
                                 <th>Pasien</th>
                                 <th>Jenis Kelamin</th>
-                                <th>Tanggal Konsul</th>
-                                <th>Dokter</th>
                                 <th>Keluhan Utama</th>
                                 <th>Status</th>
                             </tr>

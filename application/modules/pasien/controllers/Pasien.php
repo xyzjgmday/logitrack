@@ -147,7 +147,6 @@ class Pasien extends CI_Controller
     echo json_encode($patients);
   }
 
-
 }
 
 

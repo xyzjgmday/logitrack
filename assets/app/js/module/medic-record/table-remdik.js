@@ -7,7 +7,7 @@ var DatatablesBasicPaginations = function () {
 	var secondSegment = segments[1];
 	var lastSegment = segments[2] ? `/${segments[2]}` : '';
 
-	var updateUrl = "/rawat_jalan/change/";
+	var updateUrl = "/medical-record/create/";
 	var deleteUrl = "/rawat_jalan/delete/";
 	var listUrl = "/rekam_medis/viewlist/";
 
@@ -20,19 +20,16 @@ var DatatablesBasicPaginations = function () {
 		$('#table-remdis').DataTable({
 			responsive: true,
 			ajax: {
-				url: baseUrl + listUrl + secondSegment + lastSegment,
+				url: baseUrl + listUrl,
 				type: 'POST',
 				data: {
-					columnsDef: ["id", "nama", "mrn", "jenis_kelamin", "no_antrian", "tgl_konsul", "nama_nakes"]
+					columnsDef: ["id", "nama", "mrn", "jenis_kelamin", "tanggal_konsul", "keluhan_utama"]
 				}
 			},
 			columns: [
 				{ data: null },
 				{ data: null },
-				{ data: 'jenis_kelamin' },
-				{ data: 'no_antrian' },
-				{ data: 'tgl_konsul' },
-				{ data: 'nama_nakes' },
+				{ data: null },
 				{ data: 'keluhan_utama' },
 				{ data: '' }
 			],
@@ -41,13 +38,14 @@ var DatatablesBasicPaginations = function () {
 			},
 			columnDefs: [
 				{
-					targets: 6,
+					targets: 4,
 					orderable: false,
-					// visible: isSIUUUUU(),
 					render: function (data, type, full, meta) {
-						return `<a href="${baseUrl + updateUrl + full.id}" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
-							<i class="la la-edit"></i>
-						</a>&nbsp;&nbsp;<a href="javascript:;" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" onclick="confirmDelete('${baseUrl + deleteUrl + full.id}')">
+						return `<a href="${baseUrl + updateUrl + full.mrn}" 
+								class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" 
+								title="Periksa"><i class="fa fa-notes-medical"></i></a>
+								&nbsp;&nbsp;
+								<a href="javascript:;" class="btn btn-outline-info m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" onclick="confirmDelete('${baseUrl + deleteUrl + full.id}')">
 							<i class="la la-print"></i>
 						</a>`;
 					}
@@ -137,47 +135,8 @@ function confirmDelete(deleteUrl) {
 		});
 }
 
-var FormControls = {
-	init: function (baseUrl) {
-		var patients = new Bloodhound({
-			datumTokenizer: Bloodhound.tokenizers.obj.whitespace('nama'),
-			queryTokenizer: Bloodhound.tokenizers.whitespace,
-			remote: {
-				url: baseUrl + "/patients/get_patients?term=%QUERY",
-				wildcard: '%QUERY',
-			}
-		});
 
-		$('#nama').typeahead({
-			hint: true,
-			highlight: true,
-			minLength: 1
-		}, {
-			name: 'patients',
-			display: 'nama',
-			source: patients,
-			templates: {
-				suggestion: function (data) {
-					return '<div>' + data.nama + '</div>';
-				}
-			}
-		}).bind('typeahead:select', function (ev, suggestion) {
-			$("#nama").val(suggestion.nama);
-			$("input[name='mrn']").val(suggestion.mrn);
-			return false;
-		});
-
-		$('#nama').on('input', function () {
-			if ($(this).val().trim() === '') {
-				$("input[name='mrn']").val('');
-			}
-		});
-	},
-};
 
 jQuery(document).ready(function () {
-	const baseUrl = window.location.origin;
-	FormControls.init(baseUrl);
-
 	DatatablesBasicPaginations.init();
 });

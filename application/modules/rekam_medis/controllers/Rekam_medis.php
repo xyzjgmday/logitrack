@@ -39,11 +39,14 @@ class Rekam_medis extends CI_Controller
         break;
     }
 
+    $error = $this->input->get('error');
+
     $data = [
       'title' => "Rekam Medis",
-      'url' => base_url() . 'medical-record/create',
+      'url' => base_url() . 'medical-record/vital-sign',
       'url_tabs' => base_url() . 'medical-record/resume',
       'tabs' => $tab_active,
+      'error' => $error,
       'var' => '<script src="' . base_url() . 'assets/app/js/module/medic-record/table-remdik.js?v=' . time() . '"></script>'
     ];
 
@@ -134,52 +137,17 @@ class Rekam_medis extends CI_Controller
     echo json_encode($response);
   }
 
-  public function delete($id)
+  public function submit()
   {
-    if ($id) {
-      $this->db->where('id', $id);
-      $deleted = $this->db->delete($this->PasienModel->tableName());
+    $mrn = $this->input->post('mrn');
+    $nama = $this->input->post('nama');
 
-      if ($deleted) {
-        $response = array('success' => true);
-      } else {
-        $response = array('success' => false);
-      }
+    if (!$this->RemdisModel->check_mrn_init($mrn)) {
+      redirect('medical-record/resume' . '?error=true');
     } else {
-      $response = array('success' => false);
-    }
-
-    $this->output
-      ->set_content_type('application/json')
-      ->set_output(json_encode($response));
-  }
-
-  public function check_nik()
-  {
-    $nik = $this->input->post('nik');
-
-    $this->db->where('nik', $nik);
-    $query = $this->db->get('patients');
-    $exists = $query->num_rows() > 0;
-
-    echo json_encode(['exists' => $exists]);
-  }
-
-  private function get_referer()
-  {
-    $referer = $this->input->server('HTTP_REFERER');
-    $parsed_url = parse_url($referer);
-    $path = isset($parsed_url['path']) ? $parsed_url['path'] : '';
-    $path_segments = explode('/', trim($path, '/'));
-    $last_segment = end($path_segments);
-
-    if ($last_segment === "general") {
-      return 1;
-    } else {
-      return 2;
+      redirect('medical-record/create/' . urlencode($mrn));
     }
   }
-
 }
 
 

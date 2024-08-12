@@ -181,6 +181,8 @@
     <!--end::Global Theme Bundle -->
 
     <!--end::Page Vendors -->
+    <script src="<?= base_url() ?>assets/app/js/module/index.js"></script>
+
     <?= $js_vendor ?>
     <!--end::Page Scripts -->
 </body>

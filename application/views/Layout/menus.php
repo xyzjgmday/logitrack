@@ -48,8 +48,8 @@
                                 href="<?= base_url('medical-record/resume') ?>" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Resume</span></a></li>
-                        <li class="m-menu__item <?= is_active('dentistry', 2) ?>" aria-haspopup="true"><a
-                                href="<?= base_url('appointment/dentistry') ?>" class="m-menu__link "><i
+                        <li class="m-menu__item <?= is_active('', 2) ?>" aria-haspopup="true"><a
+                                href="javascript:;" class="m-menu__link " data-toggle="modal" data-target="#m_modal_1"><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Pemeriksaan</span></a></li>
                     </ul>

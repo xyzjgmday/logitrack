@@ -202,11 +202,11 @@
                             </div>
                         </div>
                         <div class="m-separator m-separator--dashed m-separator--lg mt-2 mb-3"></div>
-                        <div id="m_repeater_1">
+                        <div class="m_repeater_1">
                             <div class="form-group m-form__group row">
                                 <div class="col-lg-12">
                                     <label class="form-label font-weight-bold">Pilih Obat</label>
-                                    <div data-repeater-list="" class="col-lg-16" style="margin-left: -60px;">
+                                    <div data-repeater-list="obat-list" class="col-lg-16" style="margin-left: -60px;">
                                         <div data-repeater-item class="form-group m-form__group row">
                                             <div class="col-lg-6">
                                                 <div class="m-form__group m-form__group--inline"
@@ -219,7 +219,6 @@
                                                             data-toggle="m-tooltip" title="Pilih Obat" required>
                                                     </div>
                                                 </div>
-                                                <div class="d-md-none m--margin-bottom-10"></div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="m-form__group m-form__group--inline"
@@ -246,7 +245,7 @@
                             </div>
                             <div class="m-form__group form-group row">
                                 <label class="col-lg-8 col-form-label"></label>
-                                <div class="col-lg-0">
+                                <div class="col-lg-4">
                                     <div data-repeater-create=""
                                         class="btn btn btn-sm btn-brand m-btn m-btn--icon m-btn--pill m-btn--wide">
                                         <span>

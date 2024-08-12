@@ -123,17 +123,29 @@ class RemdisModel extends CI_Model
 
   public function get_patient_subjective($mrn = NULL, $status = NULL)
   {
-    $this->db->select('a.mrn, a.nama, a.tanggal_lahir, a.jenis_kelamin, a.gol_darah, b.is_pregnant, b.is_lactating, b.stat_smoke, b.keluhan_utama, b.rwt_alegi_obat, b.riwayat_penyakit');
+    $this->db->select('a.id, a.mrn, a.nama, a.tanggal_lahir, a.jenis_kelamin, a.gol_darah, b.is_pregnant, b.is_lactating, b.stat_smoke, b.keluhan_utama, b.rwt_alegi_obat, b.riwayat_penyakit');
     $this->db->from('patients AS a');
     $this->db->join('initial_assessment AS b', 'a.mrn = b.mrn', 'inner');
 
     if ($mrn) {
       $this->db->where('a.mrn', $mrn);
+      $query = $this->db->get();
+      return $query->row();
     } else {
-      $this->db->where('a.mrn', $mrn);
+      $query = $this->db->get();
+      return $query->result_array();
     }
 
-    $query = $this->db->get();
-    return $query->row();
+  }
+
+  public function check_mrn_init($mrn)
+  {
+    $today = date('Y-m-d');
+
+    $this->db->where('mrn', $mrn);
+    $this->db->where('DATE(created_at)', $today);
+    $query = $this->db->get('initial_assessment');
+
+    return $query->num_rows() > 0;
   }
 }

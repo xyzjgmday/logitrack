@@ -30,7 +30,7 @@ var FormControls = {
                                 type: 'warning',
                                 timer: 2000,
                                 showConfirmButton: false
-                            })
+                            });
                         }
                     },
                     error: function (xhr, status, error) {
@@ -82,7 +82,7 @@ var FormControls = {
                                 type: 'warning',
                                 timer: 2000,
                                 showConfirmButton: false
-                            })
+                            });
                         }
                     },
                     error: function (xhr, status, error) {
@@ -109,7 +109,7 @@ var FormControls = {
             placeholder: " Select a state",
         });
 
-        $('#m_repeater_1').repeater({
+        $('.m_repeater_1').repeater({
             initEmpty: false,
 
             defaultValues: {
@@ -118,6 +118,7 @@ var FormControls = {
 
             show: function () {
                 $(this).slideDown();
+                getDrugs.initializeTypeahead($(this).find('.drug'));
             },
 
             hide: function (deleteElement) {
@@ -145,26 +146,25 @@ var getDrugs = {
             }
         });
 
-        function initializeTypeahead() {
-            $('.drug').typeahead({
-                hint: true,
-                highlight: true,
-                minLength: 1
-            }, {
-                name: 'obat',
-                display: 'value',
-                source: drugEngine
+        this.initializeTypeahead = function ($elements) {
+            $elements.each(function () {
+                if (!$(this).data('typeahead')) {
+                    $(this).typeahead({
+                        hint: true,
+                        highlight: true,
+                        minLength: 1
+                    }, {
+                        name: 'obat',
+                        display: 'value',
+                        source: drugEngine
+                    }).data('typeahead', true);
+                }
             });
-        }
+        };
 
-        initializeTypeahead();
-
-        $('#m_repeater_1').on('click', '[data-repeater-create]', function () {
-            setTimeout(initializeTypeahead, 100);
-        });
+        this.initializeTypeahead($('.drug'));
     }
 };
-
 
 jQuery(document).ready(function () {
     const baseUrl = window.location.origin;

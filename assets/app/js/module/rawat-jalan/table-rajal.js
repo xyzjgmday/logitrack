@@ -42,7 +42,6 @@ var DatatablesBasicPaginations = function () {
 				{
 					targets: 6,
 					orderable: false,
-					// visible: isSIUUUUU(),
 					render: function (data, type, full, meta) {
 						let isDone = full.status === 'done';
 						return `

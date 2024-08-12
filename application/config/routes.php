@@ -83,8 +83,8 @@ $route['appointment/registration'] = "rawat_jalan/registration";
 //medical-record
 $route['medical-record/resume/([^/]+)'] = "rekam_medis/index/$1";
 $route['medical-record/resume'] = "rekam_medis/index";
-
 $route['medical-record/create/([^/]+)'] = "rekam_medis/create/$1";
+$route['medical-record/submit'] = "rekam_medis/submit";
 
 //rekam-medic
 $route['medical-record/vital-sign'] = "rekam_medis/kajian_awal";

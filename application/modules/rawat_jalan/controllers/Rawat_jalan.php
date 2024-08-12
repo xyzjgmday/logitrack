@@ -162,26 +162,6 @@ class Rawat_jalan extends CI_Controller
     echo json_encode($response);
   }
 
-  public function delete($id)
-  {
-    if ($id) {
-      $this->db->where('id', $id);
-      $deleted = $this->db->delete($this->PasienModel->tableName());
-
-      if ($deleted) {
-        $response = array('success' => true);
-      } else {
-        $response = array('success' => false);
-      }
-    } else {
-      $response = array('success' => false);
-    }
-
-    $this->output
-      ->set_content_type('application/json')
-      ->set_output(json_encode($response));
-  }
-
   public function cetak_kartu($mrn)
   {
     $this->db->where('mrn', $mrn);
