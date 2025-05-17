@@ -13,13 +13,13 @@
         </li>
         <?php if ($this->session->userdata('s_level_data') == 1 || $this->session->userdata('s_level_data') == 2) { ?>
             <li class="m-menu__section ">
-                <h4 class="m-menu__section-text">Perawatan</h4>
+                <h4 class="m-menu__section-text">Pengiriman</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
             <li class="m-menu__item  m-menu__item--submenu <?= is_active_submenu(['general', 'dentistry'], 2) ?>"
                 aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;"
                     class="m-menu__link m-menu__toggle"> <i class="m-menu__link-icon fa fa-briefcase-medical"></i>
-                    <span class="m-menu__link-text">Rawat Jalan</span><i
+                    <span class="m-menu__link-text">Pengiriman</span><i
                         class="m-menu__ver-arrow la la-angle-right"></i></a>
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">

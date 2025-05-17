@@ -57,9 +57,7 @@ var DatatablesBasicPaginations = function () {
 
 						output = `
 							<div class="m-card-user m-card-user--sm">
-								<div class="m-card-user__pic">
-									<div class="m-card-user__no-photo m--bg-fill-` + state + `"><span>` + row.nama.substring(0, 1) + `</span></div>
-								</div>
+								
 								<div class="m-card-user__details">
 									<span class="m-card-user__name">` + row.nama + `</span>
 									<a href="" class="m-card-user__email m-link">` + row.mrn + `</a>
