@@ -1,25 +1,28 @@
 var DatatablesBasicPaginations = function () {
 
 	var baseUrl = window.location.origin;
-	var updateUrl = "/master/drivers/change/";
-	var deleteUrl = "/master/drivers/delete/";
-	var listUrl = "/master/drivers/viewlist";
+	var updateUrl = "/master/outlets/change/";
+	var deleteUrl = "/master/outlets/delete/";
+	var listUrl = "/master/outlets/viewlist";
 	var initTable1 = function () {
 
-		$('#table-drivers').DataTable({
+		$('#table-outlets').DataTable({
 			responsive: true,
 			ajax: {
 				url: baseUrl + listUrl,
 				type: 'POST',
 				data: {
-					columnsDef: ["id", "name", "phone", "plat_nomor"]
+					columnsDef: ["id", "name", "phone", "address", "latitude", "longitude", "distance"]
 				}
 			},
 			columns: [
 				{ data: null },
 				{ data: 'name' },
 				{ data: 'phone' },
-				{ data: 'plat_nomor' },
+				{ data: 'address' },
+				{ data: 'latitude' },
+				{ data: 'longitude' },
+				{ data: 'distance' },
 			],
 			columnDefs: [
 				{
@@ -31,7 +34,7 @@ var DatatablesBasicPaginations = function () {
 					}
 				},
 				{
-					targets: 4,
+					targets: 6,
 					orderable: false,
 					render: function (data, type, full, meta) {
 						return `<a href="${baseUrl + updateUrl + full.id}" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
@@ -90,7 +93,7 @@ function confirmDelete(deleteUrl) {
 					success: function (response) {
 						if (response.success) {
 							swal("Berhasil", "Layanan tidak aktif.", "success");
-							$('#table-drivers').DataTable().ajax.reload();
+							$('#table-outlets').DataTable().ajax.reload();
 						} else {
 							swal("Gagal", "Terjadi kesalahan saat memproses data.", "error");
 						}
