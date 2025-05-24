@@ -102,6 +102,10 @@
                                 href="<?= base_url('master/user') ?>" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Akun</span></a></li>
+                        <li class="m-menu__item <?= is_active('products', 2) ?>" aria-haspopup="true"><a
+                                href="<?= base_url('master/products') ?>" class="m-menu__link "><i
+                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                    class="m-menu__link-text">Barang</span></a></li>
                         <li class="m-menu__item <?= is_active('sales', 2) ?>" aria-haspopup="true"><a
                                 href="<?= base_url('master/sales') ?>" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
