@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <title>SIRUKIT - RS Kabupaten Sorong</title>
-    <meta name="description" content="Sistem Informasi Rumah Sakit Upaya Sehat">
+    <meta name="description" content="Sistem Informasi Logitrack">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 
     <!--begin::Web font -->
@@ -147,9 +147,9 @@
             </div>
             <div class="m-grid__item m-grid__item--fluid m-grid m-grid--center m-grid--hor m-grid__item--order-tablet-and-mobile-1	m-login__content m-grid-item--center" style="background-image: url(<?= base_url(); ?>assets/img/banner-login.jpeg)">
                 <div class="m-grid__item">
-                    <h3 class="m-login__welcome m--font-brand">SI Rumah Sakit</h3>
+                    <h3 class="m-login__welcome m--font-brand">Logitrack</h3>
                     <p class="m-login__msg">
-                        Anda Sehat Kami Senang ...
+                    Lacak Lebih Cerdas, Kirim Lebih Cepat...
                     </p>
                 </div>
             </div>

@@ -6,12 +6,12 @@
         </button>
         <strong>Selamat Datang
             <?= ucwords($this->session->userdata('s_username')) ?> !
-        </strong> Di Sistem Informasi Rumah Sakit Kab. Sorong.
+        </strong> Di Sistem Informasi Logitrack
     </div>
     <div class="m-portlet__head-caption">
         <div class="m-portlet__head-title">
             <h3 class="m-portlet__head-text">
-                Report Monthly
+                Laporan Bulanan
             </h3>
         </div>
     </div>
