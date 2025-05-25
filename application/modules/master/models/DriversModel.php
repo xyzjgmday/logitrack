@@ -52,7 +52,7 @@ class DriversModel extends CI_Model
     $plat_no = $this->input->post('plat_no', TRUE);
 
     $data = array(
-      'name' => ucwords($nama_drivers),
+      'driver_name' => ucwords($nama_drivers),
       'phone' => $no_hp,
       'plat_nomor' => $plat_no,
       'created_at' => date('Y-m-d H:i:s')

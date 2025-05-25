@@ -12,7 +12,7 @@ var DatatablesBasicPaginations = function () {
 				url: baseUrl + listUrl,
 				type: 'POST',
 				data: {
-					columnsDef: ["id", "product_code", "name", "quantity", "price"]
+					columnsDef: ["id", "product_code", "product_name", "quantity", "price"]
 				}
 			},
 			columns: [
@@ -50,7 +50,7 @@ var DatatablesBasicPaginations = function () {
 							<div class="m-card-user m-card-user--sm">
 								
 								<div class="m-card-user__details">
-									<span class="m-card-user__name">` + row.name + `</span>
+									<span class="m-card-user__name">` + row.product_name + `</span>
 									<a href="" class="m-card-user__email m-link">` + row.product_code + `</a>
 								</div>
 							</div>`;

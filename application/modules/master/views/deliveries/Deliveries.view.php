@@ -17,7 +17,7 @@
                             <a href="<?= $url ?>" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air">
                                 <span>
                                     <i class="la la-plus"></i>
-                                    <span>Tambah Layanan</span>
+                                    <span>Atur Rute</span>
                                 </span>
                             </a>
                         </li>
@@ -32,9 +32,10 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Layanan</th>
-                        <th>Tipe Layanan</th>
-                        <th>Harga</th>
+                        <!-- Nantinya dibawah outlet ada alamatnya -->
+                        <th>Nama Outlet</th> 
+                        <th>Nama Sales</th>
+                        <th>Nama Driver</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -42,9 +43,9 @@
                 <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Nama Layanan</th>
-                        <th>Tipe Layanan</th>
-                        <th>Harga</th>
+                        <th>Nama Outlet</th>
+                        <th>Nama Sales</th>
+                        <th>Nama Driver</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>

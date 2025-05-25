@@ -57,7 +57,7 @@ class Deliveries extends CI_Controller
       <script src="' . base_url() . 'assets/app/js/module/master/input-service.js?v=' . time() . '"></script>'
     );
 
-    $this->layout->utama('deliveries/InputService', $data, 'master', 'poli');
+    $this->layout->utama('deliveries/InputDeliveries', $data, 'master', 'poli');
   }
 
   function change($id)
@@ -73,7 +73,7 @@ class Deliveries extends CI_Controller
       <script src="' . base_url() . 'assets/app/js/module/master/input-service.js?v=' . time() . '"></script>',
       'hasil' => $this->DeliveriesModel->filter_data($id)
     );
-    $this->layout->utama('deliveries/UpdateService', $data, 'master', 'poli');
+    $this->layout->utama('deliveries/UpdateDeliveries', $data, 'master', 'poli');
   }
 
   function insert_data()

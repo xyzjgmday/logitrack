@@ -12,7 +12,7 @@ var DatatablesBasicPaginations = function () {
 				url: baseUrl + listUrl,
 				type: 'POST',
 				data: {
-					columnsDef: ["id", "name", "phone", "address", "latitude", "longitude", "distance"]
+					columnsDef: ["id", "outlet_name", "phone", "address", "latitude", "longitude", "distance"]
 				}
 			},
 			columns: [

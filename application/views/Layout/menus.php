@@ -23,10 +23,10 @@
                         class="m-menu__ver-arrow la la-angle-right"></i></a>
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
-                        <li class="m-menu__item <?= is_active('general', 2) ?>" aria-haspopup="true"><a
-                                href="<?= base_url('appointment/general') ?>" class="m-menu__link "><i
+                        <li class="m-menu__item <?= is_active('deliveries', 2) ?>" aria-haspopup="true"><a
+                                href="<?= base_url('master/deliveries') ?>" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                    class="m-menu__link-text">Poli Umum</span></a></li>
+                                    class="m-menu__link-text">Atur Rute</span></a></li>
                         <li class="m-menu__item <?= is_active('dentistry', 2) ?>" aria-haspopup="true"><a
                                 href="<?= base_url('appointment/dentistry') ?>" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span

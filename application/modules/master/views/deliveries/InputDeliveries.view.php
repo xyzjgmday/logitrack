@@ -30,11 +30,14 @@
                     </div>
                 </div>
                 <div class="form-group m-form__group row">
-                    <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Nama Layanan <span
-                            class="m--font-danger">*</span></label>
+                    <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Nama Outlet</label>
                     <div class="col-lg-6 col-md-9 col-sm-12">
-                        <input type="text" class="form-control m-input" name="nama_lay" placeholder="Enter your type"
-                            data-toggle="m-tooltip" title="Nama Layanan" required>
+                        <select class="form-control m-select2" id="m_select2_1" name="outlet">
+                            <option></option>
+                            <?php foreach ($outlet as $value) {
+                                echo '<option value="' . $value->id . '">' . $value->outlet_name . '</option>';
+                            } ?>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group m-form__group row">

@@ -12,12 +12,12 @@ var DatatablesBasicPaginations = function () {
 				url: baseUrl + listUrl,
 				type: 'POST',
 				data: {
-					columnsDef: ["id", "name", "phone", "plat_nomor"]
+					columnsDef: ["id", "driver_name", "phone", "plat_nomor"]
 				}
 			},
 			columns: [
 				{ data: null },
-				{ data: 'name' },
+				{ data: 'driver_name' },
 				{ data: 'phone' },
 				{ data: 'plat_nomor' },
 			],
