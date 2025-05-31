@@ -36,12 +36,32 @@ class DeliveriesModel extends CI_Model
   function getData()
   {
     $results = array();
-    $query = $this->db->query("SELECT * FROM" . $this->tableName());
+    $sql = "SELECT
+            sales.sales_name,
+            drivers.driver_name,
+            outlets.outlet_name,
+            DATE(deliveries.date) AS delivery_date,
+            deliveries.status,
+            deliveries.id
+          FROM
+            sales
+            INNER JOIN deliveries ON sales.id = deliveries.sales_id
+            INNER JOIN drivers ON drivers.id = deliveries.driver_id
+            INNER JOIN outlets ON outlets.id = deliveries.outlet_id
+          ORDER BY drivers.driver_name ASC";
+
+    $query = $this->db->query($sql);
+
     if ($query->num_rows() > 0) {
-      $results = $query->result();
+      $rawResults = $query->result();
+      foreach ($rawResults as $row) {
+        $row->delivery_date = tglIndo($row->delivery_date);
+        $results[] = $row;
+      }
     }
     return $results;
   }
+
 
   function save_data($input_mode, $id = '')
   {

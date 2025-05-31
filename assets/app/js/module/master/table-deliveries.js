@@ -16,19 +16,30 @@ var DatatablesBasicPaginations = function () {
 				url: baseUrl + listUrl,
 				type: 'POST',
 				data: {
-					columnsDef: ["outlet_id", "sales_id", "driver_id", "date", "status"]
+					columnsDef: ["id", "outlet_name", "sales_name", "driver_name", "delivery_date", "status"]
 				}
 			},
 			columns: [
-				{ data: 'outlet_id' },
-				{ data: 'sales_id' },
-				{ data: 'driver_id' },
-				{ data: 'date' },
+				{ data: 'id' },
+				{ data: 'outlet_name' },
+				{ data: 'sales_name' },
+				{ data: 'driver_name' },
+				{ data: 'delivery_date' },
 				{ data: null },
 				{ data: '' }
 			],
 			columnDefs: [
-
+				{
+					targets: 6,
+					orderable: false,
+					render: function (data, type, full, meta) {
+						return `<a href="${baseUrl + updateUrl + full.id}" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
+							<i class="la la-edit"></i>
+						</a>&nbsp;&nbsp;<a href="javascript:;" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air" onclick="confirmDelete('${baseUrl + deleteUrl + full.id}')">
+							<i class="la la-trash"></i>
+						</a>`;
+					}
+				},
 				{
 					targets: 5,
 					render: function (data, type, full, meta) {
@@ -39,6 +50,7 @@ var DatatablesBasicPaginations = function () {
 						`;
 					}
 				},
+				
 			],
 			processing: true,
 		});
