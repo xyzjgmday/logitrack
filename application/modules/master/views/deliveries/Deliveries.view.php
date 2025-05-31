@@ -28,7 +28,7 @@
         <div class="m-portlet__body">
 
             <!--begin: Datatable -->
-            <table class="table table-striped- table-bordered table-hover table-checkable" id="table-service">
+            <table class="table table-striped- table-bordered table-hover table-checkable" id="table-deliveries">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -36,6 +36,7 @@
                         <th>Nama Outlet</th> 
                         <th>Nama Sales</th>
                         <th>Nama Driver</th>
+                        <th>Tanggal Pengiriman</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -46,6 +47,7 @@
                         <th>Nama Outlet</th>
                         <th>Nama Sales</th>
                         <th>Nama Driver</th>
+                        <th>Tanggal Pengiriman</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>

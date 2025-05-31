@@ -29,10 +29,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group m-form__group pb-0">
+                    <small>Informasi Armada</small>
+                </div>
                 <div class="form-group m-form__group row">
                     <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Nama Outlet</label>
                     <div class="col-lg-6 col-md-9 col-sm-12">
-                        <select class="form-control m-select2" id="m_select2_1" name="outlet">
+                        <select class="form-control m-select2" id="m_select2_1" name="outlet_id">
                             <option></option>
                             <?php foreach ($outlet as $value) {
                                 echo '<option value="' . $value->id . '">' . $value->outlet_name . '</option>';
@@ -41,51 +44,41 @@
                     </div>
                 </div>
                 <div class="form-group m-form__group row">
-                    <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Type Layanan <span
-                            class="m--font-danger">*</span></label>
+                    <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Nama Sales</label>
                     <div class="col-lg-6 col-md-9 col-sm-12">
-                        <div class="m-radio-inline">
-                            <label class="m-radio m-radio--solid">
-                                <input type="radio" name="type_layanan" checked value="1"> Rawat Jalan
-                                <span></span>
-                            </label>
-                            <label class="m-radio m-radio--solid">
-                                <input type="radio" name="type_layanan" value="0"> Rawat Inap
-                                <span></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="m-separator m-separator--dashed m-separator--lg mt-2 mb-3"></div>
-                <div class="form-group m-form__group pb-0">
-                    <small>Harga</small>
-                </div>
-                <div class="form-group m-form__group row">
-                    <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Harga <span
-                            class="m--font-danger">*</span></label>
-                    <div class="col-lg-6 col-md-9 col-sm-12">
-                        <div class="input-group m-input-group">
-                            <div class="input-group-prepend"><span class="input-group-text">Rp. </span></div>
-                            <input type="text" class="form-control m-input" name="harga" id="harga"
-                                placeholder="Enter your type" data-toggle="m-tooltip" title="Tarif Layanan" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="m-separator m-separator--dashed m-separator--lg mt-2 mb-3"></div>
-                <div class="form-group m-form__group pb-0">
-                    <small>Asosiasi</small>
-                </div>
-                <div class="form-group m-form__group row">
-                    <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Poliklinik</label>
-                    <div class="col-lg-6 col-md-9 col-sm-12">
-                        <select class="form-control m-select2" id="m_select2_1" name="poli">
+                        <select class="form-control m-select2" id="m_select2_2" name="sales_id">
                             <option></option>
-                            <?php foreach ($poli as $value) {
-                                echo '<option value="' . $value->id . '">' . $value->nama_poli . '</option>';
+                            <?php foreach ($sales as $value) {
+                                echo '<option value="' . $value->id . '">' . $value->sales_name . '</option>';
                             } ?>
                         </select>
                     </div>
                 </div>
+                <div class="form-group m-form__group row">
+                    <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Nama Drivers</label>
+                    <div class="col-lg-6 col-md-9 col-sm-12">
+                        <select class="form-control m-select2" id="m_select2_3" name="driver_id">
+                            <option></option>
+                            <?php foreach ($driver as $value) {
+                                echo '<option value="' . $value->id . '">' . $value->driver_name . '</option>';
+                            } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="m-separator m-separator--dashed m-separator--lg mt-2 mb-3"></div>
+                <div class="form-group m-form__group pb-0">
+                    <small>Tanggal Pengiriman</small>
+                </div>
+                <div class="form-group m-form__group row">
+                    <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Tanggal <span
+                            class="m--font-danger">*</span></label>
+                    <div class="col-lg-6 col-md-9 col-sm-12">
+                        <div class="input-group m-input-group">
+                            <input type="date" class="form-control m-input" name="date" data-toggle="m-tooltip" title="Masukkan Tanggal Pengiriman" placeholder="Enter your type" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-separator m-separator--dashed m-separator--lg mt-2 mb-3"></div>
             </div>
             <div class="m-portlet__foot m-portlet__foot--fit">
                 <div class="m-form__actions m-form__actions">

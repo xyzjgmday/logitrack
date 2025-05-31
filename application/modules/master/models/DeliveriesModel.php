@@ -47,16 +47,16 @@ class DeliveriesModel extends CI_Model
   {
     $this->load->library('form_validation');
 
-    $nama_lay = $this->input->post('nama_lay', TRUE);
-    $type_layanan = $this->input->post('type_layanan', TRUE);
-    $harga = $this->input->post('harga', TRUE);
-    $poli_id = $this->input->post('poli', TRUE);
+    $outlet_id = $this->input->post('outlet_id', TRUE);
+    $sales_id = $this->input->post('sales_id', TRUE);
+    $driver_id = $this->input->post('driver_id', TRUE);
+    $date = $this->input->post('date', TRUE);
 
     $data = array(
-      'name' => ucwords($nama_lay),
-      'type_layanan' => $type_layanan,
-      'harga' => $harga,
-      'clinic_id' => $poli_id,
+      'outlet_id' => $outlet_id,
+      'sales_id' => $sales_id,
+      'driver_id' => $driver_id,
+      'date' => $date,
       'status' => 1,
       'created_at' => date('Y-m-d H:i:s')
     );

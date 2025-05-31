@@ -30,7 +30,7 @@ class Deliveries extends CI_Controller
     $data = [
       'title' => "Data Deliveries",
       'url' => base_url() . 'master/deliveries/insert',
-      'var' => '<script src="' . base_url() . 'assets/app/js/module/master/table-service.js?v=' . time() . '"></script>'
+      'var' => '<script src="' . base_url() . 'assets/app/js/module/master/table-deliveries.js?v=' . time() . '"></script>'
     ];
 
     $this->layout->utama('deliveries/deliveries', $data, 'master', 'poli');
@@ -47,14 +47,18 @@ class Deliveries extends CI_Controller
 
   function insert()
   {
-    $get_poli = $this->db->select('*')->from('clinics')->get();
+    $get_outlet = $this->db->select('*')->from('outlets')->get();
+    $get_sales = $this->db->select('*')->from('sales')->get();
+    $get_driver = $this->db->select('*')->from('drivers')->get();
 
     $data = array(
       'title' => 'Buat Layanan',
       'url' => base_url() . 'master/deliveries/insert_data',
-      'poli' => $get_poli->result(),
+      'outlet' => $get_outlet->result(),
+      'sales' => $get_sales->result(),
+      'driver' => $get_driver->result(),
       'var' => '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-      <script src="' . base_url() . 'assets/app/js/module/master/input-service.js?v=' . time() . '"></script>'
+      <script src="' . base_url() . 'assets/app/js/module/master/input-deliveries.js?v=' . time() . '"></script>'
     );
 
     $this->layout->utama('deliveries/InputDeliveries', $data, 'master', 'poli');
@@ -70,7 +74,7 @@ class Deliveries extends CI_Controller
       'url' => base_url() . 'master/deliveries/update_data',
       'poli' => $get_poli->result(),
       'var' => '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-      <script src="' . base_url() . 'assets/app/js/module/master/input-service.js?v=' . time() . '"></script>',
+      <script src="' . base_url() . 'assets/app/js/module/master/input-deliveries.js?v=' . time() . '"></script>',
       'hasil' => $this->DeliveriesModel->filter_data($id)
     );
     $this->layout->utama('deliveries/UpdateDeliveries', $data, 'master', 'poli');
