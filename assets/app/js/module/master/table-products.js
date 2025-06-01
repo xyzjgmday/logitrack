@@ -17,10 +17,10 @@ var DatatablesBasicPaginations = function () {
 			},
 			columns: [
 				{ data: null },
-				{ data: 'null' },
+				{ data: null },
 				{ data: 'quantity' },
-				{ data: 'null' },
-				{ data: 'null' },
+				{ data: null },
+				{ data: null },
 			],
 			columnDefs: [
 				{

@@ -6,7 +6,7 @@ var DatatablesBasicPaginations = function () {
 	var listUrl = "/master/deliveries/viewlist";
 	var initTable1 = function () {
 		statsObj = {
-			1: { title: 'Aktif', color: 'info' },
+			1: { title: 'Pending', color: 'warning' },
 			0: { title: 'Nonaktif', color: 'warning' }
 		};
 
@@ -16,12 +16,12 @@ var DatatablesBasicPaginations = function () {
 				url: baseUrl + listUrl,
 				type: 'POST',
 				data: {
-					columnsDef: ["id", "outlet_name", "sales_name", "driver_name", "delivery_date", "status"]
+					columnsDef: ["id", "outlet_name", "address", "sales_name", "driver_name", "delivery_date", "status"]
 				}
 			},
 			columns: [
 				{ data: 'id' },
-				{ data: 'outlet_name' },
+				{ data: null },
 				{ data: 'sales_name' },
 				{ data: 'driver_name' },
 				{ data: 'delivery_date' },
@@ -29,6 +29,32 @@ var DatatablesBasicPaginations = function () {
 				{ data: '' }
 			],
 			columnDefs: [
+				{
+					targets: 1,
+					render: function (data, full, row) {
+						var stateNo = mUtil.getRandomInt(0, 7);
+						var states = [
+							'success',
+							'brand',
+							'danger',
+							'accent',
+							'warning',
+							'metal',
+							'primary',
+							'info'];
+						var state = states[stateNo];
+
+						output = `
+							<div class="m-card-user m-card-user--sm">
+								
+								<div class="m-card-user__details">
+									<span class="m-card-user__name">` + row.outlet_name + `</span>
+									<a href="" class="m-card-user__email m-link">` + row.address + `</a>
+								</div>
+							</div>`;
+						return output;
+					},
+				},
 				{
 					targets: 6,
 					orderable: false,

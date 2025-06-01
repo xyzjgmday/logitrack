@@ -40,6 +40,7 @@ class DeliveriesModel extends CI_Model
             sales.sales_name,
             drivers.driver_name,
             outlets.outlet_name,
+            outlets.address,
             DATE(deliveries.date) AS delivery_date,
             deliveries.status,
             deliveries.id
