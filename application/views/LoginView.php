@@ -51,7 +51,7 @@
                         <div class="m-login__wrapper">
                             <div class="m-login__logo">
                                 <a href="#">
-                                    <img src="https://www.rsudkabupatensorong.co.id/_nuxt/logo-sorong2-1.f2aaf0e1.png" width="140">
+                                    <img src="https://cdn.vectorstock.com/i/500p/77/02/trailer-truck-logo-concept-vector-27487702.jpg" width="140">
                                 </a>
                             </div>
                             <div class="m-login__signin">

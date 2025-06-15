@@ -17,7 +17,7 @@ var DatatablesBasicPaginations = function () {
 			},
 			columns: [
 				{ data: null },
-				{ data: 'name' },
+				{ data: 'outlet_name' },
 				{ data: 'phone' },
 				{ data: 'address' },
 				{ data: 'latitude' },

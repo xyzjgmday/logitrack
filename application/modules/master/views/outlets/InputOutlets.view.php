@@ -33,8 +33,8 @@
                     <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Nama Outlets <span
                             class="m--font-danger">*</span></label>
                     <div class="col-lg-6 col-md-9 col-sm-12">
-                        <input type="text" class="form-control m-input" name="nama_outlets" placeholder="Enter your type"
-                            data-toggle="m-tooltip" title="Nama Drivers" required>
+                        <input type="text" class="form-control m-input" name="nama_outlets"
+                            placeholder="Enter your type" data-toggle="m-tooltip" title="Nama Drivers" required>
                     </div>
                 </div>
                 <div class="m-separator m-separator--dashed m-separator--lg mt-2 mb-3"></div>
@@ -59,7 +59,7 @@
                     <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Latitude <span
                             class="m--font-danger">*</span></label>
                     <div class="col-lg-6 col-md-9 col-sm-12">
-                        <input type="text" class="form-control m-input" name="latitude" placeholder="Enter your type"
+                        <input type="text" class="form-control m-input" name="latitude" id="latitude" placeholder="Enter your type"
                             data-toggle="m-tooltip" title="Latitude" required>
                     </div>
                 </div>
@@ -67,10 +67,17 @@
                     <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Longitude <span
                             class="m--font-danger">*</span></label>
                     <div class="col-lg-6 col-md-9 col-sm-12">
-                        <input type="text" class="form-control m-input" name="longitude" placeholder="Enter your type"
+                        <input type="text" class="form-control m-input" name="longitude" id="longitude" placeholder="Enter your type"
                             data-toggle="m-tooltip" title="longitude" required>
                     </div>
-                </div>               
+                </div>
+                <div class="form-group m-form__group row">
+                    <label class="col-form-label col-lg-3 col-sm-12 font-weight-bold">Pilih Lokasi <span
+                            class="m--font-danger">*</span></label>
+                    <div class="col-lg-6 col-md-9 col-sm-12">
+                        <div id="map" style="height: 400px;"></div>
+                    </div>
+                </div>
             </div>
             <div class="m-portlet__foot m-portlet__foot--fit">
                 <div class="m-form__actions m-form__actions">

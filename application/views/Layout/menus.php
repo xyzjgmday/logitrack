@@ -18,9 +18,8 @@
             </li>
             <li class="m-menu__item  m-menu__item--submenu <?= is_active_submenu(['general', 'dentistry'], 2) ?>"
                 aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;"
-                    class="m-menu__link m-menu__toggle"> <i class="m-menu__link-icon fa fa-briefcase-medical"></i>
-                    <span class="m-menu__link-text">Pengiriman</span><i
-                        class="m-menu__ver-arrow la la-angle-right"></i></a>
+                    class="m-menu__link m-menu__toggle"> <i class="m-menu__link-icon fa fa-truck"></i>
+                    <span class="m-menu__link-text">Pengiriman</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
                         <li class="m-menu__item <?= is_active('deliveries', 2) ?>" aria-haspopup="true"><a
@@ -130,6 +129,41 @@
                                 href="<?= base_url('master/practitioner') ?>" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Tenaga Medis</span></a></li>
+                    </ul>
+                </div>
+            </li>
+        <?php } ?>
+
+        <?php if ($this->session->userdata('s_level_data') == 5) { ?>
+            <li class="m-menu__item <?= is_active('patients') ?>" aria-haspopup="true" m-menu-link-redirect="1">
+                <a href="<?= base_url('master/products') ?>" class="m-menu__link ">
+                    <span class="m-menu__item-here"></span>
+                    <i class="m-menu__link-icon flaticon-users"></i>
+                    <span class="m-menu__link-text">Barang</span>
+                </a>
+            </li>
+            <li class="m-menu__section ">
+                <h4 class="m-menu__section-text">Master</h4>
+                <i class="m-menu__section-icon flaticon-more-v2"></i>
+            </li>
+            <li class="m-menu__item  m-menu__item--submenu <?= is_active_submenu(['user', 'polyclinic', 'services', 'practitioner'], 2) ?>"
+                aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;"
+                    class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-interface-1"></i><span
+                        class="m-menu__link-text">Master Data</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
+                    <ul class="m-menu__subnav">
+                        <li class="m-menu__item <?= is_active('products', 2) ?>" aria-haspopup="true"><a
+                                href="<?= base_url('master/products') ?>" class="m-menu__link "><i
+                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                    class="m-menu__link-text">Barang</span></a></li>
+                        <li class="m-menu__item <?= is_active('sales', 2) ?>" aria-haspopup="true"><a
+                                href="<?= base_url('master/sales') ?>" class="m-menu__link "><i
+                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                    class="m-menu__link-text">Sales</span></a></li>
+                        <li class="m-menu__item <?= is_active('outlets', 2) ?>" aria-haspopup="true"><a
+                                href="<?= base_url('master/outlets') ?>" class="m-menu__link "><i
+                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                    class="m-menu__link-text">Outlets</span></a></li>
                     </ul>
                 </div>
             </li>

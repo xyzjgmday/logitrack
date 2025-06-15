@@ -5,7 +5,7 @@
                 m-dropdown-toggle="click">
                 <a href="#" class="m-nav__link m-dropdown__toggle">
                     <span class="m-topbar__userpic">
-                        <img src="https://www.rsudkabupatensorong.co.id/_nuxt/logo-sorong2-1.f2aaf0e1.png"
+                        <img src="https://cdn.vectorstock.com/i/500p/77/02/trailer-truck-logo-concept-vector-27487702.jpg"
                             class="m--img-rounded m--marginless" alt="" />
                     </span>
                     <span class="m-topbar__username m--hide">Nick</span>
@@ -17,7 +17,7 @@
                             style="background: url(<?= base_url() ?>assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
                             <div class="m-card-user m-card-user--skin-dark">
                                 <div class="m-card-user__pic">
-                                    <img src="https://www.rsudkabupatensorong.co.id/_nuxt/logo-sorong2-1.f2aaf0e1.png"
+                                    <img src="https://cdn.vectorstock.com/i/500p/77/02/trailer-truck-logo-concept-vector-27487702.jpg"
                                         class="m--img-rounded m--marginless" alt="" />
                                 </div>
                                 <div class="m-card-user__details">
